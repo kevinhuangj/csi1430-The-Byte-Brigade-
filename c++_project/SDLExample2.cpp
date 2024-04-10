@@ -18,6 +18,7 @@
 #include "config.h"
 #include "grid.h"
 #include "square.h"
+#include "GameEvents.h"
 using namespace std;
 
 
@@ -28,19 +29,17 @@ int main(int argc, char ** argv)
 
     SDL_Plotter g(SIZE,SIZE);
     //int R, G, B;
-    int dim = SIZE/SIDE;
-    Square data[dim][dim];
 
-    for(int r = 0;r < dim;r++)
-    {
-    	for(int c = 0;c < dim;c++)
-    	{
-    		data[r][c].setRow(r);
-    		data[r][c].setCol(c);
-    	}
-    }
+
     while (!g.getQuit())
     {
+        //Rules
+        GameEvents game;                //ALL TEMPORARY
+        game.underpopulationRule();     //ALL TEMPORARY
+        game.overpopulationRule();      //ALL TEMPORARY
+        game.reproductionRule();        //ALL TEMPORARY
+        game.nextGenerationRule();      //ALL TEMPORARY
+
 		if(g.kbhit()){
 		}
 
@@ -62,5 +61,3 @@ int main(int argc, char ** argv)
 		g.update();
     }
 }
-
-

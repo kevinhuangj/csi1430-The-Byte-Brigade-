@@ -9,8 +9,8 @@
 
 Square::Square()
 {
-	row = 10;
-	col = 9;
+	row = 0;
+	col = 0;
 	type = WATER;
 	_color = color(25,25, 255);
 }
@@ -42,7 +42,7 @@ void Square::click()
 
 	switch(type)
 	{
-	case EMPTY: _color = color(255,255,255);
+	case DEAD: _color = color(255,255,255);
 	break;
 	case WATER: _color = color(25,25,255);
 	break;
@@ -54,4 +54,6 @@ void Square::click()
 	break;
 	}
 }
+
+
 
