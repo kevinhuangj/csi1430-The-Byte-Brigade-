@@ -11,7 +11,7 @@
 const int SIZE = 1000;
 const int SIDE = 10;
 const int NUMTYPES = 5;
-enum objType {EMPTY, WATER, GRASS, RABBIT, FOX};
+enum objType {DEAD, WATER, GRASS, RABBIT, FOX};
 
 
 
