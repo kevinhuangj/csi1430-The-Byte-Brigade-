@@ -29,7 +29,17 @@ int main(int argc, char ** argv)
 
     SDL_Plotter g(SIZE,SIZE);
     //int R, G, B;
+    int dim = SIZE/SIDE;
+    Square testSquare[dim][dim];
 
+    for(int r = 0; r < dim; r++)
+    {
+        for(int c = 0; c < dim; c++)
+        {
+            testSquare[r][c].setRow(r);
+            testSquare[r][c].setCol(c);
+        }
+    }
 
     while (!g.getQuit())
     {
@@ -43,21 +53,24 @@ int main(int argc, char ** argv)
 		if(g.kbhit()){
 		}
 
-		if(g.mouseClick()){
-			point p = g.getMouseClick();
-			cout << p.x/SIDE << " " << p.y/SIDE << endl;
-			data[p.y/SIDE][p.x/SIDE].click();
-		}
+        if(g.mouseClick()){
+            point p = g.getMouseClick();                    //THIS WILL BE A GAME EVENT
+            cout << p.x/SIDE << " " << p.y/SIDE << endl;
+            testSquare[p.y/SIDE][p.x/SIDE].click();
+        }
 
-		for(int r = 0;r < dim;r++)
-		{
-			for(int c = 0;c < dim;c++)
-			{
-				data[r][c].draw(g);
+        for(int r = 0; r < dim; r++)
+        {
+            for(int c = 0; c < dim; c++)
+            {
+                testSquare[r][c].draw(g);
+            }
+        }
+        drawGrid(g);
+        g.update();
 
-			}
-		}
-		drawGrid(g);
-		g.update();
+
+
+
     }
 }

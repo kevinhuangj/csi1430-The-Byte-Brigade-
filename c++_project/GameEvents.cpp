@@ -27,11 +27,13 @@ void GameEvents::underpopulationRule() {
         }
     }
 
-    data.getNeighbors();
+    /*
+    data.getNeighbors();                       //fixme
     if(data.getNeighbors() < 2)
     {
         data.setType(DEAD);
     }
+    */
 
 }
 

@@ -11,8 +11,8 @@ Square::Square()
 {
 	row = 0;
 	col = 0;
-	type = WATER;
-	_color = color(25,25, 255);
+	type = DEAD;
+	_color = color(255,255, 255);
 }
 
 void Square::draw(SDL_Plotter& g)
