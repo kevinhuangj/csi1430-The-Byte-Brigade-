@@ -2,7 +2,8 @@
  * square.cpp
  *
  *  Created on: Apr 3, 2024
- *      Author: dylan
+ *      Author: Kevin Huang
+ *      Editted by Eric_Escobar, Junshen_Huang, Lucas_Ulibarri, Merrick_Beinhower, Zhicheng_Zhao
  */
 
 #include "square.h"
