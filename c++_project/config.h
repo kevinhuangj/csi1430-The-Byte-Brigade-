@@ -2,7 +2,8 @@
  * config.h
  *
  *  Created on: Apr 3, 2024
- *      Author: dylan
+ *      Author: Kevin Huang
+ *      Editted by Eric Escobar, Junshen_Huang, Lucas Ulibarri, Merrick Beinhower, Zhicheng Zhao
  */
 
 #ifndef CONFIG_H_
