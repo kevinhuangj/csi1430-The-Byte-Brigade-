@@ -8,7 +8,7 @@
  *
  * System for determining grid position based off of pixel interaction x / SIDE y / SIDE
  *
- * Testing to see if pull is working
+ * Testing to see if pull is working.
  */
 
 
