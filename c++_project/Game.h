@@ -27,6 +27,8 @@ public:
 
     vector<Square*> checkNeighbors(int row, int col, Square data[][dim], int dim);
 
+    void getNeighbors(Square data[][dim], vector<Square*> checkNeighbors(int row, int col, Square data[][dim], int dim));
+
     void overpopulationRule();
 
     void underpopulationRule();

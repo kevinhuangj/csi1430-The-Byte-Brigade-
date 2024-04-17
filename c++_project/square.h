@@ -21,10 +21,11 @@ private:
     int row{}, col{};
     objType type;
     color _color;
+    int numNeighbors;
 public:
     Square(); // <-- Constructor
 
-    Square(int row, int col, int numNeighbors, objType type); // <-- Constructor
+    Square(int numNeighbors, objType type); // <-- Constructor
 
     void draw(SDL_Plotter& g);
 
@@ -37,6 +38,10 @@ public:
     int getRow();
 
     int getCol();
+
+    int getNumNeighbors() const;
+
+    void setNumNeighbors(int num);
 
     objType getType();
     objType setType(objType t);

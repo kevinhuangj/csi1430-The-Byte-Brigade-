@@ -13,13 +13,15 @@ Square::Square() // <-- Constructor
     row = 0;
     col = 0;
     type = DEAD;
+    numNeighbors = 0;
     _color = color(128, 128, 128);
 }
 
-Square::Square(int row, int col, int numNeighbors, objType type)
+Square::Square(int numNeighbors, objType type)
 {
-    this-> row = row;
-    this-> col = col;
+    row = 0;
+    col = 0;
+    numNeighbors = 0;
     type = DEAD;
     _color = color(128, 128, 128);
 }
@@ -107,6 +109,16 @@ void Square::click()
             _color = color(255,128,128);
             break;
     }
+}
+
+int Square::getNumNeighbors() const
+{
+    return numNeighbors;
+}
+
+void Square::setNumNeighbors(int num)
+{
+    numNeighbors = num;
 }
 
 

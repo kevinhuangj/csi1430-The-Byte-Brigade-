@@ -43,6 +43,11 @@ vector<Square*> Game::checkNeighbors(int row, int col, Square data[][dim], int d
     return cellNeighbors;
 }
 
+void getNeighbors()
+{
+
+}
+
 void Game::overpopulationRule()
 {
     lock_guard<mutex> lock(data_mutex);
@@ -64,13 +69,22 @@ void Game::overpopulationRule()
 void Game::underpopulationRule()
 {
     lock_guard<mutex> lock(data_mutex);
+    // First loop to update numNeighbors for each Square
     for (int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
         {
             vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
+            data[r][c].setNumNeighbors(cellNeighbors.size());
+        }
+    }
 
-            if(cellNeighbors.size() < 2)
+    // Second loop to apply the underpopulation rule
+    for (int r = 0; r < dim; r++)
+    {
+        for (int c = 0; c < dim; c++)
+        {
+            if(data[r][c].getNumNeighbors() < 2)
             {
                 data[r][c].setType(DEAD);
                 cout << "underpopulationRule" << endl;
@@ -91,11 +105,7 @@ void Game::nextGenerationRule()
 
             if((numNeighbors == 2 || numNeighbors == 3) && data[r][c].getType() == CELL)
             {
-                // Set the cells around it to EMPTY
-                for (Square* neighbor : cellNeighbors)
-                {
-                    neighbor->setType(DEAD);
-                }
+                data[r][c].setType(CELL);
             }
         }
     }
@@ -104,6 +114,16 @@ void Game::nextGenerationRule()
 void Game::reproductionRule()
 {
     lock_guard<mutex> lock(data_mutex);
+    // First loop to update numNeighbors for each Square
+    for (int r = 0; r < dim; r++)
+    {
+        for (int c = 0; c < dim; c++)
+        {
+            vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
+            data[r][c].setNumNeighbors(cellNeighbors.size());
+        }
+    }
+
     for (int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
@@ -111,7 +131,7 @@ void Game::reproductionRule()
             vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
             int numNeighbors = cellNeighbors.size();
 
-            if(numNeighbors == 3 && data[r][c].getType() == DEAD)
+            if(numNeighbors == 3)
             {
                 data[r][c].setType(CELL);
                 cout << "Reproduction" << endl;
