@@ -10,6 +10,7 @@
 #include "config.h"
 #include "grid.h"
 #include <thread>
+#include <mutex>
 using namespace std;
 
 
@@ -19,6 +20,7 @@ private:
     SDL_Plotter g;
     Square data[dim][dim] ;
     int numNeighbors;
+    mutex data_mutex;
 
 public:
     Game();

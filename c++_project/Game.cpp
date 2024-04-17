@@ -45,6 +45,7 @@ vector<Square*> Game::checkNeighbors(int row, int col, Square data[][dim], int d
 
 void Game::overpopulationRule()
 {
+    lock_guard<mutex> lock(data_mutex);
     for (int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
@@ -62,13 +63,14 @@ void Game::overpopulationRule()
 
 void Game::underpopulationRule()
 {
+    lock_guard<mutex> lock(data_mutex);
     for (int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
         {
             vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
 
-            if(cellNeighbors.size() < 2 && data[r][c].getType() == CELL)
+            if(cellNeighbors.size() < 2)
             {
                 data[r][c].setType(DEAD);
                 cout << "underpopulationRule" << endl;
@@ -79,6 +81,7 @@ void Game::underpopulationRule()
 
 void Game::nextGenerationRule()
 {
+    lock_guard<mutex> lock(data_mutex);
     for (int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
@@ -100,6 +103,7 @@ void Game::nextGenerationRule()
 
 void Game::reproductionRule()
 {
+    lock_guard<mutex> lock(data_mutex);
     for (int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
@@ -145,17 +149,15 @@ void Game::handleKeyPress()
         char key = g.getKey();
         if(key == 'r')
         {
-            overpopulationRule();
-            this_thread::sleep_for(std::chrono::seconds(1)); // Delay for 1 second
+            thread t1(&Game::underpopulationRule, this);
+            thread t2(&Game::nextGenerationRule, this);
+            thread t3(&Game::overpopulationRule, this);
+            thread t4(&Game::reproductionRule, this);
 
-            underpopulationRule();
-            this_thread::sleep_for(std::chrono::seconds(2)); // Delay for 1 second
-
-            nextGenerationRule();
-            this_thread::sleep_for(std::chrono::seconds(1)); // Delay for 1 second
-
-            reproductionRule();
-            this_thread::sleep_for(std::chrono::seconds(1)); // Delay for 1 second
+            t1.join();
+            t2.join();
+            t3.join();
+            t4.join();
         }
     }
 }
