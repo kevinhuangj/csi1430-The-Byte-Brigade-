@@ -12,21 +12,36 @@
 
 #include "SDL_Plotter.h"
 #include "config.h"
+#include "grid.h"
 
 class Square
 {
 
 private:
-	int row, col;
-	objType type;
-	color _color;
-
+    int row{}, col{};
+    objType type;
+    color _color;
 public:
-	Square();
-	void draw(SDL_Plotter& g);
-	void setRow(int);
-	void setCol(int);
-	void click();
+    Square(); // <-- Constructor
+
+    Square(int row, int col, int numNeighbors, objType type); // <-- Constructor
+
+    void draw(SDL_Plotter& g);
+
+    void setRow(int r);
+
+    void setCol(int c);
+
+    void click();
+
+    int getRow();
+
+    int getCol();
+
+    objType getType();
+    objType setType(objType t);
+
+
 };
 
 #endif

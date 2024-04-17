@@ -9,10 +9,13 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-const int SIZE = 1000;
-const int SIDE = 10;
-const int NUMTYPES = 5;
-enum objType {DEAD, WATER, GRASS, RABBIT, FOX};
+const int SIZE = 500;
+const int SIDE = 25;
+const int dim = SIZE/SIDE;
+
+enum objType {DEAD, CELL, GRASS, RABBIT, FOX}; /* */
+const int numTypes = 5;
+
 
 
 
