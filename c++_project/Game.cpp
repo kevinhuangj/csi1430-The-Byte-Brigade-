@@ -15,11 +15,6 @@ vector<Square*> Game::checkNeighbors(int row, int col, Square data[][dim], int d
 {
     vector<Square*> cellNeighbors;
 
-    if (data[row][col].getType() != CELL)
-    {
-        return cellNeighbors;
-    }
-
     int directions[8][2] = {{-1, 0},
                             {-1, 1},
                             {0, 1},
@@ -34,18 +29,13 @@ vector<Square*> Game::checkNeighbors(int row, int col, Square data[][dim], int d
         int newRow = row + directions[i][0];
         int newCol = col + directions[i][1];
 
-        if (newRow >= 0 && newRow < dim && newCol >= 0 && newCol < dim && data[newRow][newCol].getType() == CELL)
+        if (newRow >= 0 && newRow < dim && newCol >= 0 && newCol < dim)
         {
             cellNeighbors.push_back(&data[newRow][newCol]);
         }
     }
 
     return cellNeighbors;
-}
-
-void getNeighbors()
-{
-
 }
 
 void Game::overpopulationRule()
@@ -120,18 +110,24 @@ void Game::reproductionRule()
         for (int c = 0; c < dim; c++)
         {
             vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
-            data[r][c].setNumNeighbors(cellNeighbors.size());
+            int liveNeighbors = 0;
+            for (Square* neighbor : cellNeighbors)
+            {
+                if (neighbor->getType() == CELL)
+                {
+                    liveNeighbors++;
+                }
+            }
+            data[r][c].setNumNeighbors(liveNeighbors);
         }
     }
 
+    // Second loop to apply the reproduction rule
     for (int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
         {
-            vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
-            int numNeighbors = cellNeighbors.size();
-
-            if(numNeighbors == 3)
+            if(data[r][c].getType() == DEAD && data[r][c].getNumNeighbors() == 3)
             {
                 data[r][c].setType(CELL);
                 cout << "Reproduction" << endl;
@@ -169,13 +165,13 @@ void Game::handleKeyPress()
         char key = g.getKey();
         if(key == 'r')
         {
-            thread t1(&Game::underpopulationRule, this);
-            thread t2(&Game::nextGenerationRule, this);
-            thread t3(&Game::overpopulationRule, this);
-            thread t4(&Game::reproductionRule, this);
+//            thread t1(&Game::underpopulationRule, this);
+//            thread t2(&Game::nextGenerationRule, this);
+            thread t3(&Game::reproductionRule, this);
+            thread t4(&Game::overpopulationRule, this);
 
-            t1.join();
-            t2.join();
+//            t1.join();
+//            t2.join();
             t3.join();
             t4.join();
         }
