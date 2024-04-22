@@ -10,7 +10,7 @@
 #ifndef SQUARE_H_
 #define SQUARE_H_
 
-#include "SDL_Plotter.h"
+#include "PLOTTER/SDL_Plotter.h"
 #include "config.h"
 #include "grid.h"
 

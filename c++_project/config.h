@@ -13,8 +13,8 @@ const int SIZE = 500;
 const int SIDE = 25;
 const int dim = SIZE/SIDE;
 
-enum objType {DEAD, CELL, GRASS, RABBIT, FOX}; /* */
-const int numTypes = 5;
+enum objType {DIRT,CROPS, GRASS, HUMAN, MAMMOTH, TIGER, WATER}; /* */
+const int numTypes = 7;
 
 
 

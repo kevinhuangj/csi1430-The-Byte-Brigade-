@@ -9,7 +9,7 @@
 #ifndef GRID_H_
 #define GRID_H_
 
-#include "SDL_Plotter.h"
+#include "PLOTTER/SDL_Plotter.h"
 #include "config.h"
 
 void drawLine(int x1, int y1, int x2, int y2, int R, int G, int B, SDL_Plotter& g);

@@ -6,17 +6,21 @@
 #define CSI1430_THE_BYTE_BRIGADE_GAME_H
 
 #include "square.h"
-#include "SDL_Plotter.h"
+#include "PLOTTER/SDL_Plotter.h"
 #include "config.h"
 #include "grid.h"
 #include <thread>
 #include <mutex>
+#include "Entites/Headers/Mammoth.h"
+#include "Entites/Headers/Human.h"
 using namespace std;
 
 
 class Game
 {
 private:
+    Human human;
+    Mammoth mammoth;
     SDL_Plotter g;
     Square data[dim][dim] ;
     int numNeighbors;
@@ -24,18 +28,6 @@ private:
 
 public:
     Game();
-
-    vector<Square*> checkNeighbors(int row, int col, Square data[][dim], int dim);
-
-    void getNeighbors(Square data[][dim], vector<Square*> checkNeighbors(int row, int col, Square data[][dim], int dim));
-
-    void overpopulationRule();
-
-    void underpopulationRule();
-
-    void nextGenerationRule();
-
-    void reproductionRule();
 
     void initData();
 

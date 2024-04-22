@@ -4,136 +4,11 @@
 
 #include "Game.h"
 
-#include "Game.h"
-
 Game::Game() : g(SIZE, SIZE)
 {
     initData();
-}
-
-vector<Square*> Game::checkNeighbors(int row, int col, Square data[][dim], int dim)
-{
-    vector<Square*> cellNeighbors;
-
-    int directions[8][2] = {{-1, 0},
-                            {-1, 1},
-                            {0, 1},
-                            {1, 1},
-                            {1, 0},
-                            {1, -1},
-                            {0, -1},
-                            {-1, -1}};
-
-    for (int i = 0; i < 8; i++)
-    {
-        int newRow = row + directions[i][0];
-        int newCol = col + directions[i][1];
-
-        if (newRow >= 0 && newRow < dim && newCol >= 0 && newCol < dim)
-        {
-            cellNeighbors.push_back(&data[newRow][newCol]);
-        }
-    }
-
-    return cellNeighbors;
-}
-
-void Game::overpopulationRule()
-{
-    lock_guard<mutex> lock(data_mutex);
-    for (int r = 0; r < dim; r++)
-    {
-        for (int c = 0; c < dim; c++)
-        {
-            vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
-
-            if (cellNeighbors.size() > 3)
-            {
-                data[r][c].setType(DEAD);
-                cout << "Overpopulation" << endl;
-            }
-        }
-    }
-}
-
-void Game::underpopulationRule()
-{
-    lock_guard<mutex> lock(data_mutex);
-    // First loop to update numNeighbors for each Square
-    for (int r = 0; r < dim; r++)
-    {
-        for (int c = 0; c < dim; c++)
-        {
-            vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
-            data[r][c].setNumNeighbors(cellNeighbors.size());
-        }
-    }
-
-    // Second loop to apply the underpopulation rule
-    for (int r = 0; r < dim; r++)
-    {
-        for (int c = 0; c < dim; c++)
-        {
-            if(data[r][c].getNumNeighbors() < 2)
-            {
-                data[r][c].setType(DEAD);
-                cout << "underpopulationRule" << endl;
-            }
-        }
-    }
-}
-
-void Game::nextGenerationRule()
-{
-    lock_guard<mutex> lock(data_mutex);
-    for (int r = 0; r < dim; r++)
-    {
-        for (int c = 0; c < dim; c++)
-        {
-            vector<Square*> cellNeighbors = checkNeighbors(r, c,  data, dim);
-            int numNeighbors = cellNeighbors.size();
-
-            if((numNeighbors == 2 || numNeighbors == 3) && data[r][c].getType() == CELL)
-            {
-                data[r][c].setType(CELL);
-            }
-        }
-    }
-}
-
-void Game::reproductionRule()
-{
-    lock_guard<mutex> lock(data_mutex);
-    // First loop to update numNeighbors for each Square
-    for (int r = 0; r < dim; r++)
-    {
-        for (int c = 0; c < dim; c++)
-        {
-            vector<Square*> cellNeighbors = checkNeighbors(r, c, data, dim);
-            int liveNeighbors = 0;
-            for (Square* neighbor : cellNeighbors)
-            {
-                if (neighbor->getType() == CELL)
-                {
-                    liveNeighbors++;
-                }
-            }
-            data[r][c].setNumNeighbors(liveNeighbors);
-        }
-    }
-
-    // Second loop to apply the reproduction rule
-    for (int r = 0; r < dim; r++)
-    {
-        for (int c = 0; c < dim; c++)
-        {
-            if(data[r][c].getType() == DEAD && data[r][c].getNumNeighbors() == 3)
-            {
-                data[r][c].setType(CELL);
-                cout << "Reproduction" << endl;
-            }
-        }
-    }
+    human.setPos(0, 0);
+    mammoth.setPos(0, 1);
 }
 
 void Game::initData()
@@ -165,15 +40,7 @@ void Game::handleKeyPress()
         char key = g.getKey();
         if(key == 'r')
         {
-//            thread t1(&Game::underpopulationRule, this);
-//            thread t2(&Game::nextGenerationRule, this);
-            thread t3(&Game::reproductionRule, this);
-            thread t4(&Game::overpopulationRule, this);
 
-//            t1.join();
-//            t2.join();
-            t3.join();
-            t4.join();
         }
     }
 }
@@ -187,7 +54,6 @@ void Game::drawAndUpdate()
             data[r][c].draw(g);
         }
     }
-
     drawGrid(g);
     g.update();
 }

@@ -12,7 +12,7 @@
  */
 
 
-#include "SDL_Plotter.h"
+#include "PLOTTER/SDL_Plotter.h"
 #include "Game.h"
 
 using namespace std;

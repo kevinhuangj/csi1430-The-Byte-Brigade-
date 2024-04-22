@@ -12,9 +12,10 @@ Square::Square() // <-- Constructor
 {
     row = 0;
     col = 0;
-    type = DEAD;
+    type = DIRT;
     numNeighbors = 0;
-    _color = color(128, 128, 128);
+    //color brown = color(128, 64, 0);
+    _color = color(128, 64, 0);
 }
 
 Square::Square(int numNeighbors, objType type)
@@ -22,8 +23,8 @@ Square::Square(int numNeighbors, objType type)
     row = 0;
     col = 0;
     numNeighbors = 0;
-    type = DEAD;
-    _color = color(128, 128, 128);
+    type = DIRT;
+    _color = color(128, 64, 0);
 }
 
 void Square::draw(SDL_Plotter& g)
@@ -69,21 +70,26 @@ objType Square::setType(objType t)
     type = t;
     switch (type)
     {
-        case DEAD:
-            _color = color(128,128,128);
+        case DIRT:
+            _color = color(128, 64, 0); // brown
             break;
-        case CELL:
-            _color = color(0,0,255);
+        case CROPS:
+            _color = color(255, 255, 0); // bright yellow
             break;
         case GRASS:
-            _color = color(0,0,0);
+            _color = color(0, 128, 0); // Dark green
             break;
-        case RABBIT:
-            _color = color(128,128,128);
+        case HUMAN:
+            _color = color(255, 0, 0); // bright red
             break;
-        case FOX:
-            _color = color(255,128,128);
+        case MAMMOTH:
+            _color = color(0, 165, 255); // Baby blue
             break;
+        case TIGER:
+            _color = color(255, 165, 0); // orange
+            break;
+        case WATER:
+            _color = color(0, 0, 255); // blue
     }
     return type;
 }
@@ -93,21 +99,26 @@ void Square::click()
     type = static_cast<objType>(static_cast<int>(type + 1) % numTypes);
     switch (type)
     {
-        case DEAD:
-            _color = color(128,128,128);
+        case DIRT:
+            _color = color(128, 64, 0); // brown
             break;
-        case CELL:
-            _color = color(0,0,255);
+        case CROPS:
+            _color = color(255, 255, 0); // bright yellow
             break;
         case GRASS:
-            _color = color(0,0,0);
+            _color = color(0, 128, 0); // Dark green
             break;
-        case RABBIT:
-            _color = color(128,128,128);
+        case HUMAN:
+            _color = color(255, 0, 0); // bright red
             break;
-        case FOX:
-            _color = color(255,128,128);
+        case MAMMOTH:
+            _color = color(0, 165, 255); // Baby blue
             break;
+        case TIGER:
+            _color = color(255, 165, 0); // orange
+            break;
+        case WATER:
+            _color = color(0, 0, 255); // blue
     }
 }
 
