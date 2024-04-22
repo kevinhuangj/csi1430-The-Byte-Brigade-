@@ -8,11 +8,10 @@
 #include "square.h"
 #include "PLOTTER/SDL_Plotter.h"
 #include "config.h"
-#include "grid.h"
-#include <thread>
 #include <mutex>
 #include "Entites/Headers/Mammoth.h"
 #include "Entites/Headers/Human.h"
+#include <random>
 using namespace std;
 
 
@@ -28,6 +27,8 @@ private:
 
 public:
     Game();
+
+    void generateGrassAndWater(int numGrass, int numWater);
 
     void initData();
 

@@ -9,8 +9,8 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-const int SIZE = 500;
-const int SIDE = 25;
+const int SIZE = 1000;    // size of the window
+const int SIDE = 25;     // size of each square
 const int dim = SIZE/SIDE;
 
 enum objType {DIRT,CROPS, GRASS, HUMAN, MAMMOTH, TIGER, WATER}; /* */

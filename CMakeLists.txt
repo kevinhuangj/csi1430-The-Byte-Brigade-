@@ -22,6 +22,7 @@ add_executable(csi1430_The_Byte_Brigade_
         c++_project/Entites/Headers/Human.h
         c++_project/Entites/Src/Human.cpp
         c++_project/Entites/Headers/Mammoth.h
-        c++_project/Entites/Src/Mammoth.cpp)
+        c++_project/Entites/Src/Mammoth.cpp
+)
 
 target_link_libraries(csi1430_The_Byte_Brigade_ SDL2main SDL2 SDL2_mixer)
