@@ -20,8 +20,15 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
      * - Weighted Random Sampling: https://mathworld.wolfram.com/Sampling.html
      * - Procedural Generation Tutorial (YouTube): https://www.youtube.com/watch?v=slTEz6555Ts&pp=ygUrQ2VsbHVsYXIgQXV0b21hdGEgZm9yIFByb2NlZHVyYWwgR2VuZXJhdGlvbg%3D%3D
      * - Voronoi Diagrams for Procedural Generation (YouTube): https://www.youtube.com/watch?v=I6Fen2Ac-1U&pp=ygU0Vm9yb25vaSBEaWFncmFtcyBmb3IgUHJvY2VkdXJhbCBHZW5lcmF0aW9uIENHQWNhZGVteQ%3D%3D
+     * - Diamond Square | Procedural Generation | Game Development Tutorial (YouTube): https://www.youtube.com/watch?v=1HV8GbFnCik&pp=ygU0Vm9yb25vaSBEaWFncmFtcyBmb3IgUHJvY2VkdXJhbCBHZW5lcmF0aW9uIENHQWNhZGVteQ%3D%3D
+     * - Why use <random> instead of rand()?: https://stackoverflow.com/questions/52869166/why-is-the-use-of-rand-considered-bad
+     * - C++ random number generation: https://en.cppreference.com/w/cpp/numeric/random
      */
+
+    // Initialize the count of dirt tiles
     int dirtcount = 0;
+
+    // Initialize random number generator
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> dis(0, dim - 1);
@@ -34,22 +41,25 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
     {
         for (int c = 0; c < dim; c++)
         {
+            // If the tile is of type DIRT, increment the dirtcount
             if(data[r][c].getType() == DIRT)
             {
                 dirtcount++;
             }
         }
     }
+
+    // If there are not enough dirt tiles to place the required number of grass and water tiles, return without making any changes
     if(dirtcount < numGrass + numWater)
     {
-        // Not enough dirt tiles to place grass and water
         return;
     }
 
-    // Place grass and water
+    // Place grass tiles
     for (int i = 0; i < numGrass; i++)
-        {
+    {
         int x, y;
+        // Find a dirt tile
         do
         {
             x = dis(gen);
@@ -58,27 +68,31 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
 
         // Increase weights for neighboring tiles
         for (int dx = -1; dx <= 1; dx++)
-            {
+        {
             for (int dy = -1; dy <= 1; dy++)
             {
                 int nx = x + dx;
                 int ny = y + dy;
+                // If the neighboring tile is within the map and is of type GRASS, increase its weight
                 if (nx >= 0 && nx < dim && ny >= 0 && ny < dim)
                 {
                     if (data[ny][nx].getType() == GRASS)
                     {
-                        weights[ny][nx] += 1; // Increase weight for grass tiles
+                        weights[ny][nx] += 1;
                     }
                 }
             }
         }
 
+        // Set the tile type to GRASS
         data[y][x].setType(GRASS);
     }
 
+    // Place water tiles
     for (int i = 0; i < numWater; i++)
     {
         int x, y;
+        // Find a dirt tile
         do
         {
             x = dis(gen);
@@ -92,16 +106,18 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
             {
                 int nx = x + dx;
                 int ny = y + dy;
+                // If the neighboring tile is within the map and is of type WATER, increase its weight
                 if (nx >= 0 && nx < dim && ny >= 0 && ny < dim)
                 {
                     if (data[ny][nx].getType() == WATER)
                     {
-                        weights[ny][nx] += 4; // Increase weight for water tiles
+                        weights[ny][nx] += 4;
                     }
                 }
             }
         }
 
+        // Set the tile type to WATER
         data[y][x].setType(WATER);
     }
 }
