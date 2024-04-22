@@ -4,20 +4,30 @@
 
 #include "Game.h"
 
+
+
 Game::Game() : g(SIZE, SIZE)
 {
     initData();
 }
 
-void Game::generateGrassAndWater(int numGrass, int numWater)
+void Game::generateGrassAndWater(const int numGrass, const int numWater)
 {
+    /*
+     * References:
+     * - Voronoi Diagram: https://mathworld.wolfram.com/VoronoiDiagram.html
+     * - Elementary Cellular Automaton: https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
+     * - Weighted Random Sampling: https://mathworld.wolfram.com/Sampling.html
+     * - Procedural Generation Tutorial (YouTube): https://www.youtube.com/watch?v=slTEz6555Ts&pp=ygUrQ2VsbHVsYXIgQXV0b21hdGEgZm9yIFByb2NlZHVyYWwgR2VuZXJhdGlvbg%3D%3D
+     * - Voronoi Diagrams for Procedural Generation (YouTube): https://www.youtube.com/watch?v=I6Fen2Ac-1U&pp=ygU0Vm9yb25vaSBEaWFncmFtcyBmb3IgUHJvY2VkdXJhbCBHZW5lcmF0aW9uIENHQWNhZGVteQ%3D%3D
+     */
     int dirtcount = 0;
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, dim - 1);
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(0, dim - 1);
 
     // Create a 2D array to store weights for each tile
-    std::vector<std::vector<int>> weights(dim, std::vector<int>(dim, 1));
+    vector<vector<int>> weights(dim, vector<int>(dim, 1));
 
     // Count the number of dirt tiles
     for(int r = 0; r < dim; r++)
@@ -96,6 +106,21 @@ void Game::generateGrassAndWater(int numGrass, int numWater)
     }
 }
 
+void Game::generateLoop()
+{
+    while(!g.getQuit())
+    {
+        generateGrassAndWater(10, 2);
+        drawAndUpdate();    // Update the screen after each generation
+        SDL_Delay(100);  // Delay for a while (e.g., 1 second) to see the changes
+        if(g.kbhit())       // Break the loop if any key is pressed
+        {
+            g.getKey();     // Clear the key press event
+            break;
+        }
+    }
+}
+
 
 void Game::initData()
 {
@@ -124,14 +149,14 @@ void Game::handleKeyPress()
     if(g.kbhit())
     {
         char key = g.getKey();
-        if(key == 'r')
+        switch (key)
         {
-            initData();
+        case 'r':
+            generateLoop();
+            break;
+        case 'q':
+            cout << "Q..." << endl;
 
-            for(int i = 0; i < 10; i++)
-            {
-                generateGrassAndWater(10, 1);
-            }
         }
     }
 }

@@ -14,7 +14,6 @@
 #include <random>
 using namespace std;
 
-
 class Game
 {
 private:
@@ -22,13 +21,15 @@ private:
     Mammoth mammoth;
     SDL_Plotter g;
     Square data[dim][dim] ;
-    int numNeighbors;
+    int numNeighbors{};
     mutex data_mutex;
 
 public:
     Game();
 
     void generateGrassAndWater(int numGrass, int numWater);
+
+    void generateLoop();
 
     void initData();
 
