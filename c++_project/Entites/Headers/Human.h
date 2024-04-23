@@ -49,8 +49,6 @@ public:
 
 
     void hunt();
-    void gather();
-    void buildShelter();
 };
 
 

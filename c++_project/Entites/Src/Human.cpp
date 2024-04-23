@@ -85,11 +85,3 @@ void Human::hunt()
 {
     cout << "Hunting" << endl;      //FIXME: Need an algorithm for hunting
 }
-void Human::gather()
-{
-    cout << "Gathering" << endl;    //FIXME: Need an algorithm for gathering
-}
-void Human::buildShelter()
-{
-    cout << "Building Shelter" << endl;  //FIXME: Need an algorithm for building shelter
-}
