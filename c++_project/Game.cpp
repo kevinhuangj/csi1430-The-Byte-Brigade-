@@ -42,7 +42,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         for (int c = 0; c < dim; c++)
         {
             // If the tile is of type DIRT, increment the dirtcount
-            if(data[r][c].getType() == DIRT)
+            if(pSquare[r][c].getType() == DIRT)
             {
                 dirtcount++;
             }
@@ -64,7 +64,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         {
             x = dis(gen);
             y = dis(gen);
-        } while (data[y][x].getType() != DIRT);
+        } while (pSquare[y][x].getType() != DIRT);
 
         // Increase weights for neighboring tiles
         for (int dx = -1; dx <= 1; dx++)
@@ -76,7 +76,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
                 // If the neighboring tile is within the map and is of type GRASS, increase its weight
                 if (nx >= 0 && nx < dim && ny >= 0 && ny < dim)
                 {
-                    if (data[ny][nx].getType() == GRASS)
+                    if (pSquare[ny][nx].getType() == GRASS)
                     {
                         weights[ny][nx] += 1;
                     }
@@ -85,7 +85,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         }
 
         // Set the tile type to GRASS
-        data[y][x].setType(GRASS);
+        pSquare[y][x].setType(GRASS);
     }
 
     // Place water tiles
@@ -97,7 +97,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         {
             x = dis(gen);
             y = dis(gen);
-        } while (data[y][x].getType() != DIRT);
+        } while (pSquare[y][x].getType() != DIRT);
 
         // Increase weights for neighboring tiles
         for (int dx = -1; dx <= 1; dx++)
@@ -109,16 +109,27 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
                 // If the neighboring tile is within the map and is of type WATER, increase its weight
                 if (nx >= 0 && nx < dim && ny >= 0 && ny < dim)
                 {
-                    if (data[ny][nx].getType() == WATER)
+                    if (pSquare[ny][nx].getType() == WATER)
                     {
-                        weights[ny][nx] += 4;
+                        weights[ny][nx] += 16; // Increase weight by a larger amount
                     }
                 }
             }
         }
 
         // Set the tile type to WATER
-        data[y][x].setType(WATER);
+        pSquare[y][x].setType(WATER);
+
+        // Use weighted random sampling to select the next water tile
+        int wx, wy;
+        do
+        {
+            wx = dis(gen);
+            wy = dis(gen);
+        } while (weights[wy][wx] == 0); // Select a tile with non-zero weight
+
+        x = wx;
+        y = wy;
     }
 }
 
@@ -126,8 +137,10 @@ void Game::generateLoop()
 {
     while(!g.getQuit())
     {
-        generateGrassAndWater(10, 2);
+        generateGrassAndWater(20, 1);
         drawAndUpdate();    // Update the screen after each generation
+        generateCropAroundWater(pSquare);
+        drawAndUpdate();    // Update the screen after generating crops
         SDL_Delay(100);  // Delay for a while (e.g., 1 second) to see the changes
         if(g.kbhit())       // Break the loop if any key is pressed
         {
@@ -137,15 +150,14 @@ void Game::generateLoop()
     }
 }
 
-
 void Game::initData()
 {
     for(int r = 0; r < dim; r++)
     {
         for(int c = 0; c < dim; c++)
         {
-            data[r][c].setRow(r);
-            data[r][c].setCol(c);
+            pSquare[r][c].setRow(r);
+            pSquare[r][c].setCol(c);
         }
     }
 }
@@ -156,7 +168,7 @@ void Game::handleMouseClick()
     {
         point p = g.getMouseClick();
         cout << p.x/SIDE << " " << p.y/SIDE << endl;
-        data[p.y/SIDE][p.x/SIDE].click();
+        pSquare[p.y/SIDE][p.x/SIDE].click();
     }
 }
 
@@ -171,6 +183,7 @@ void Game::handleKeyPress()
             generateLoop();
             break;
         case 'q':
+
             cout << "Q..." << endl;
 
         }
@@ -183,7 +196,7 @@ void Game::drawAndUpdate()
     {
         for(int c = 0; c < dim; c++)
         {
-            data[r][c].draw(g);
+            pSquare[r][c].draw(g);
         }
     }
     drawGrid(g);

@@ -9,18 +9,15 @@
 #include "PLOTTER/SDL_Plotter.h"
 #include "config.h"
 #include <mutex>
-#include "Entites/Headers/Mammoth.h"
-#include "Entites/Headers/Human.h"
+#include "Entites/Headers/HumanFunc.h"
 #include <random>
 using namespace std;
 
 class Game
 {
 private:
-    Human human;
-    Mammoth mammoth;
     SDL_Plotter g;
-    Square data[dim][dim] ;
+    Square pSquare[dim][dim] ;
     int numNeighbors{};
     mutex data_mutex;
 

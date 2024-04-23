@@ -67,7 +67,7 @@ objType Square::getType()
 //setter of type
 objType Square::setType(objType t)
 {
-    type = t;
+    this->type = t;
     switch (type)
     {
         case DIRT:
