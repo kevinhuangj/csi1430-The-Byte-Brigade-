@@ -8,6 +8,6 @@
 #include "square.h"
 #include "config.h"
 
-void generateCropAroundWater(Square (&pSquare)[dim][dim]);
+void findCrops(Square (&pSquare)[dim][dim]);
 
 #endif //HUMANFUNC_H

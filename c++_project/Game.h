@@ -10,6 +10,7 @@
 #include "config.h"
 #include <mutex>
 #include "Entites/Headers/HumanFunc.h"
+#include "Entites/Headers/WorldGeneration.h"
 #include <random>
 using namespace std;
 
@@ -17,14 +18,13 @@ class Game
 {
 private:
     SDL_Plotter g;
-    Square pSquare[dim][dim] ;
-    int numNeighbors{};
+    Square pSquare[dim][dim];
     mutex data_mutex;
 
 public:
     Game();
 
-    void generateGrassAndWater(int numGrass, int numWater);
+
 
     void generateLoop();
 
