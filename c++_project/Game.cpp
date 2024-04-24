@@ -176,7 +176,13 @@ void Game::handleKeyPress()
         case 'q':
 
             cout << "Q..." << endl;
+                break;
 
+
+            case 's':
+                Mix_Chunk * munch = Mix_LoadWAV("c++_project/audio/Eat.wav");
+                Mix_PlayChannel(-1, munch, 0);
+                break;
         }
     }
 }
@@ -199,7 +205,7 @@ void Game::music() {
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024);
 
 
-    Mix_Music * music1 = Mix_LoadMUS("C:\\Users\\merri\\Documents\\GitHub\\csi1430-The-Byte-Brigade-\\c++_project\\audio\\gamemus.wav");
+    Mix_Music * music1 = Mix_LoadMUS("c++_project/audio/gamemus.wav");
     if(!music1){
         cout << "Error: No Music";
     }
