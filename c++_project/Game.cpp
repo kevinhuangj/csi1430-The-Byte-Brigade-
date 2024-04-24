@@ -172,6 +172,7 @@ void Game::handleKeyPress()
         switch (key)
         {
         case 'r':
+            music();
             generateLoop();
             break;
         case 'q':
@@ -200,9 +201,9 @@ void Game::music() {
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024);
 
 
-    Mix_Music * music1 = Mix_LoadMUS("audio/5264025683361792.wav");
+    Mix_Music * music1 = Mix_LoadMUS("C:\\Users\\merri\\Documents\\GitHub\\csi1430-The-Byte-Brigade-\\c++_project\\audio\\gamemus.wav");
     if(!music1){
-        cout << "no mus";
+        cout << "Error: No Music";
     }
     Mix_PlayMusic(music1,-1);
 }
@@ -211,7 +212,6 @@ void Game::run()
 {
     while (!g.getQuit())
     {
-        music();
         handleMouseClick();
         handleKeyPress();
         drawAndUpdate();
