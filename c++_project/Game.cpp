@@ -42,7 +42,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         for (int c = 0; c < dim; c++)
         {
             // If the tile is of type DIRT, increment the dirtcount
-            if(data[r][c].getType() == DIRT)
+            if(pSquare[r][c].getType() == DIRT)
             {
                 dirtcount++;
             }
@@ -64,7 +64,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         {
             x = dis(gen);
             y = dis(gen);
-        } while (data[y][x].getType() != DIRT);
+        } while (pSquare[y][x].getType() != DIRT);
 
         // Increase weights for neighboring tiles
         for (int dx = -1; dx <= 1; dx++)
@@ -76,7 +76,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
                 // If the neighboring tile is within the map and is of type GRASS, increase its weight
                 if (nx >= 0 && nx < dim && ny >= 0 && ny < dim)
                 {
-                    if (data[ny][nx].getType() == GRASS)
+                    if (pSquare[ny][nx].getType() == GRASS)
                     {
                         weights[ny][nx] += 1;
                     }
@@ -85,7 +85,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         }
 
         // Set the tile type to GRASS
-        data[y][x].setType(GRASS);
+        pSquare[y][x].setType(GRASS);
     }
 
     // Place water tiles
@@ -97,7 +97,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         {
             x = dis(gen);
             y = dis(gen);
-        } while (data[y][x].getType() != DIRT);
+        } while (pSquare[y][x].getType() != DIRT);
 
         // Increase weights for neighboring tiles
         for (int dx = -1; dx <= 1; dx++)
@@ -109,7 +109,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
                 // If the neighboring tile is within the map and is of type WATER, increase its weight
                 if (nx >= 0 && nx < dim && ny >= 0 && ny < dim)
                 {
-                    if (data[ny][nx].getType() == WATER)
+                    if (pSquare[ny][nx].getType() == WATER)
                     {
                         weights[ny][nx] += 4;
                     }
@@ -118,7 +118,7 @@ void Game::generateGrassAndWater(const int numGrass, const int numWater)
         }
 
         // Set the tile type to WATER
-        data[y][x].setType(WATER);
+        pSquare[y][x].setType(WATER);
     }
 }
 
@@ -144,8 +144,8 @@ void Game::initData()
     {
         for(int c = 0; c < dim; c++)
         {
-            data[r][c].setRow(r);
-            data[r][c].setCol(c);
+            pSquare[r][c].setRow(r);
+            pSquare[r][c].setCol(c);
         }
     }
 }
@@ -156,7 +156,11 @@ void Game::handleMouseClick()
     {
         point p = g.getMouseClick();
         cout << p.x/SIDE << " " << p.y/SIDE << endl;
-        data[p.y/SIDE][p.x/SIDE].click();
+        pSquare[p.y / SIDE][p.x / SIDE].click();
+//        if(pSquare[p.y / SIDE][p.x / SIDE].getType() == HUMAN){
+//            //Human pHuman[p.y / SIDE][p.x / SIDE];
+//            //
+//        }
     }
 }
 
@@ -171,6 +175,7 @@ void Game::handleKeyPress()
             generateLoop();
             break;
         case 'q':
+
             cout << "Q..." << endl;
 
         }
@@ -183,17 +188,30 @@ void Game::drawAndUpdate()
     {
         for(int c = 0; c < dim; c++)
         {
-            data[r][c].draw(g);
+            pSquare[r][c].draw(g);
         }
     }
     drawGrid(g);
     g.update();
 }
 
+void Game::music() {
+    int mxr = Mix_Init(0);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024);
+
+
+    Mix_Music * music1 = Mix_LoadMUS("audio/5264025683361792.wav");
+    if(!music1){
+        cout << "no mus";
+    }
+    Mix_PlayMusic(music1,-1);
+}
+
 void Game::run()
 {
     while (!g.getQuit())
     {
+        music();
         handleMouseClick();
         handleKeyPress();
         drawAndUpdate();

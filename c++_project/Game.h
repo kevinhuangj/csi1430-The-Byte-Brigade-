@@ -12,15 +12,16 @@
 #include "Entites/Headers/Mammoth.h"
 #include "Entites/Headers/Human.h"
 #include <random>
+
 using namespace std;
 
 class Game
 {
 private:
-    Human human;
+    Human human[dim][dim];
     Mammoth mammoth;
     SDL_Plotter g;
-    Square data[dim][dim] ;
+    Square pSquare[dim][dim];
     int numNeighbors{};
     mutex data_mutex;
 
@@ -38,6 +39,8 @@ public:
     void handleKeyPress();
 
     void drawAndUpdate();
+
+    void music();
 
     void run();
 

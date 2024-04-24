@@ -11,6 +11,7 @@
 #define SQUARE_H_
 
 #include "PLOTTER/SDL_Plotter.h"
+#include <random>
 #include "config.h"
 #include "grid.h"
 
@@ -21,7 +22,10 @@ private:
     int row{}, col{};
     objType type;
     color _color;
-    int numNeighbors;
+    int numNeighborN;
+    int numNeighborS;
+    int numNeighborE;
+    int numNeighborW;;
 public:
     Square(); // <-- Constructor
 

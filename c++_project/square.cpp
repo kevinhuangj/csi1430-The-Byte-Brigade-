@@ -10,10 +10,13 @@
 
 Square::Square() // <-- Constructor
 {
-    row = 0;
-    col = 0;
-    type = DIRT;
-    numNeighbors = 0;
+    row;
+    col;
+    type;
+    numNeighborN;
+    numNeighborS;
+    numNeighborE;
+    numNeighborW;
     //color brown = color(128, 64, 0);
     _color = color(128, 64, 0);
 }
@@ -71,25 +74,25 @@ objType Square::setType(objType t)
     switch (type)
     {
         case DIRT:
-            _color = color(128, 64, 0); // brown
+            _color = color(36, 29, 12); // brown
             break;
         case CROPS:
-            _color = color(255, 255, 0); // bright yellow
+            _color = color(186, 184, 125); // dull yellow
             break;
         case GRASS:
-            _color = color(0, 128, 0); // Dark green
+            _color = color(4, rand()%(145-140)+140, 9); // Dark green
             break;
         case HUMAN:
-            _color = color(255, 0, 0); // bright red
+            _color = color(rand()%(227-205)+205, rand()%(221-200)+200, rand()%(211-200)+200); // bright tan
             break;
         case MAMMOTH:
-            _color = color(0, 165, 255); // Baby blue
+            _color = color(183, 114, 196); // pinkish
             break;
         case TIGER:
             _color = color(255, 165, 0); // orange
             break;
         case WATER:
-            _color = color(0, 0, 255); // blue
+            _color = color(0, 0, rand()%(230-225)+225); // blue
     }
     return type;
 }
@@ -100,36 +103,36 @@ void Square::click()
     switch (type)
     {
         case DIRT:
-            _color = color(128, 64, 0); // brown
+            _color = color(36, 29, 12); // brown
             break;
         case CROPS:
-            _color = color(255, 255, 0); // bright yellow
+            _color = color(186, 184, 125); // dull yellow
             break;
         case GRASS:
-            _color = color(0, 128, 0); // Dark green
+            _color = color(4, rand()%(145-140)+140, 9); // Dark green
             break;
         case HUMAN:
-            _color = color(255, 0, 0); // bright red
+            _color = color(rand()%(227-205)+205, rand()%(221-200)+200, rand()%(211-200)+200); // bright tan
             break;
         case MAMMOTH:
-            _color = color(0, 165, 255); // Baby blue
+            _color = color(183, 114, 196); // pinkish
             break;
         case TIGER:
             _color = color(255, 165, 0); // orange
             break;
         case WATER:
-            _color = color(0, 0, 255); // blue
+            _color = color(0, 0, rand()%(230-225)+225); // blue`
     }
 }
 
 int Square::getNumNeighbors() const
 {
-    return numNeighbors;
+    return 2;
 }
 
 void Square::setNumNeighbors(int num)
 {
-    numNeighbors = num;
+
 }
 
 

@@ -14,7 +14,6 @@ using namespace std;
 class Human
 {
 private:
-    int health;
     int hunger;
     int thirst;
     int row, col;
@@ -34,9 +33,6 @@ public:
     int getThirst();
     void setThirst(int t);
 
-    string getTool();
-    void setTool(string t);
-
     int getRow();
     void setRow(int r);
 
@@ -49,8 +45,6 @@ public:
 
 
     void hunt();
-    void gather();
-    void buildShelter();
 };
 
 

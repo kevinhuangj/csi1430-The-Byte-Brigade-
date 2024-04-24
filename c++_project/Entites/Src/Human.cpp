@@ -6,21 +6,12 @@
 
 Human::Human()
 {
-    health = 100;
     hunger = 0;
     thirst = 0;
     objType type = HUMAN;
-    tool = "None";
 }
 
-int Human::getHealth()
-{
-    return health;
-}
-void Human::setHealth(int h)
-{
-    health = h;
-}
+
 
 int Human::getHunger()
 {
@@ -38,15 +29,6 @@ int Human::getThirst()
 void Human::setThirst(int t)
 {
     thirst = t;
-}
-
-string Human::getTool()
-{
-    return tool;
-}
-void Human::setTool(string t)
-{
-    tool = t;
 }
 
 int Human::getRow()
@@ -83,13 +65,7 @@ void Human::draw(SDL_Plotter& g)
 
 void Human::hunt()
 {
+
     cout << "Hunting" << endl;      //FIXME: Need an algorithm for hunting
 }
-void Human::gather()
-{
-    cout << "Gathering" << endl;    //FIXME: Need an algorithm for gathering
-}
-void Human::buildShelter()
-{
-    cout << "Building Shelter" << endl;  //FIXME: Need an algorithm for building shelter
-}
+
