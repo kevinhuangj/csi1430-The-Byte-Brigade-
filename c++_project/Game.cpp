@@ -132,6 +132,7 @@ void Game::generateLoop()
         if(g.kbhit())       // Break the loop if any key is pressed
         {
             g.getKey();     // Clear the key press event
+
             break;
         }
     }
@@ -157,10 +158,7 @@ void Game::handleMouseClick()
         point p = g.getMouseClick();
         cout << p.x/SIDE << " " << p.y/SIDE << endl;
         pSquare[p.y / SIDE][p.x / SIDE].click();
-//        if(pSquare[p.y / SIDE][p.x / SIDE].getType() == HUMAN){
-//            //Human pHuman[p.y / SIDE][p.x / SIDE];
-//            //
-//        }
+
     }
 }
 
@@ -197,7 +195,7 @@ void Game::drawAndUpdate()
 }
 
 void Game::music() {
-    int mxr = Mix_Init(0);
+
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024);
 
 
@@ -205,7 +203,20 @@ void Game::music() {
     if(!music1){
         cout << "Error: No Music";
     }
+
     Mix_PlayMusic(music1,-1);
+}
+
+void Game::allstepsallcubes(){
+
+    for(int r = 0; r < dim; r++)
+    {
+        for(int c = 0; c < dim; c++)
+        {
+            //pSquare[r][c].checkList();
+        }
+    }
+
 }
 
 void Game::run()
@@ -214,6 +225,7 @@ void Game::run()
     {
         handleMouseClick();
         handleKeyPress();
+        allstepsallcubes();
         drawAndUpdate();
     }
 }

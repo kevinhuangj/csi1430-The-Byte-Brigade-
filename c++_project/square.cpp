@@ -17,6 +17,7 @@ Square::Square() // <-- Constructor
     numNeighborS;
     numNeighborE;
     numNeighborW;
+
     //color brown = color(128, 64, 0);
     _color = color(128, 64, 0);
 }
@@ -67,6 +68,8 @@ objType Square::getType()
     return type;
 }
 
+
+
 //setter of type
 objType Square::setType(objType t)
 {
@@ -77,13 +80,14 @@ objType Square::setType(objType t)
             _color = color(36, 29, 12); // brown
             break;
         case CROPS:
-            _color = color(186, 184, 125); // dull yellow
+            _color = color(100, 200, 200); // dull yellow
             break;
         case GRASS:
             _color = color(4, rand()%(145-140)+140, 9); // Dark green
             break;
         case HUMAN:
             _color = color(rand()%(227-205)+205, rand()%(221-200)+200, rand()%(211-200)+200); // bright tan
+
             break;
         case MAMMOTH:
             _color = color(183, 114, 196); // pinkish
@@ -106,20 +110,30 @@ void Square::click()
             _color = color(36, 29, 12); // brown
             break;
         case CROPS:
-            _color = color(186, 184, 125); // dull yellow
+            _color = color(100, 200, 200); // dull yellow
             break;
         case GRASS:
             _color = color(4, rand()%(145-140)+140, 9); // Dark green
             break;
-        case HUMAN:
+        case HUMAN: {
             _color = color(rand()%(227-205)+205, rand()%(221-200)+200, rand()%(211-200)+200); // bright tan
+            Mix_Chunk * soundHuman = Mix_LoadWAV("C:\\Users\\merri\\Documents\\GitHub\\csi1430-The-Byte-Brigade-\\c++_project\\audio\\Human.wav");
+            Mix_PlayChannel(-1, soundHuman, 0);
             break;
-        case MAMMOTH:
+        }
+        case MAMMOTH: {
             _color = color(183, 114, 196); // pinkish
+            Mix_Chunk *soundMamoth = Mix_LoadWAV(
+                    "C:\\Users\\merri\\Documents\\GitHub\\csi1430-The-Byte-Brigade-\\c++_project\\audio\\Mamoth.wav");
+            Mix_PlayChannel(-1, soundMamoth, 0);
             break;
-        case TIGER:
+        }
+        case TIGER: {
             _color = color(255, 165, 0); // orange
+            Mix_Chunk * soundTiger = Mix_LoadWAV("C:\\Users\\merri\\Documents\\GitHub\\csi1430-The-Byte-Brigade-\\c++_project\\audio\\Tiger.wav");
+            Mix_PlayChannel(-1, soundTiger, 0);
             break;
+        }
         case WATER:
             _color = color(0, 0, rand()%(230-225)+225); // blue`
     }
@@ -127,6 +141,7 @@ void Square::click()
 
 int Square::getNumNeighbors() const
 {
+
     return 2;
 }
 

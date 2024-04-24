@@ -24,6 +24,7 @@ private:
     Square pSquare[dim][dim];
     int numNeighbors{};
     mutex data_mutex;
+    int mxr = Mix_Init(0);
 
 public:
     Game();
@@ -41,6 +42,8 @@ public:
     void drawAndUpdate();
 
     void music();
+
+    void allstepsallcubes();
 
     void run();
 

@@ -15,6 +15,7 @@
 #include "config.h"
 #include "grid.h"
 
+
 class Square
 {
 
