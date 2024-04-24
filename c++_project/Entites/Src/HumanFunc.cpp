@@ -4,6 +4,7 @@
 
 #include "Entites/Headers/HumanFunc.h"
 
+//Big O Notation O(n^2)
 void findCrops(Square (&pSquare)[dim][dim])
 {
     for(int r = 0; r < dim; r++)

@@ -23,31 +23,34 @@ void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][di
     // Initialize the number of attempts
 
     // Initialize the count of dirt tiles
-    int dirtcount = 0;
+    int dirtCount = 0;
 
     // Initialize random number generator
     random_device rd;
     mt19937 gen(rd());
+    // This is the random number generator that will be used to generate random numbers.
+    // dis is "Distribution" which is used to generate random numbers within a range.
     uniform_int_distribution<> dis(0, dim - 1);
 
     // Create a 2D array to store weights for each tile
     vector<vector<int>> weights(dim, vector<int>(dim, 1));
 
-    // Count the number of dirt tiles
+    // Count the number of dirt tiles or the game will crash.
     for(int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
         {
-            // If the tile is of type DIRT, increment the dirtcount
+            // If the tile is of type DIRT, increment the dirtCount.
             if(pSquare[r][c].getType() == DIRT)
             {
-                dirtcount++;
+                dirtCount++;
             }
         }
     }
 
-    // If there are not enough dirt tiles to place the required number of grass and water tiles, return without making any changes
-    if(dirtcount < numGrass + numWater)
+    // If there are not enough dirt tiles to place the required number of grass and water tiles,
+    // return without making any changes. If not, the game will crash.
+    if(dirtCount < numGrass + numWater)
     {
         return;
     }
@@ -59,16 +62,25 @@ void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][di
         // Find a dirt tile
         do
         {
+            // call back to dis to generate a random number for x and y
             x = dis(gen);
             y = dis(gen);
+            // we count the number of attempts, if it exceeds the max attempts,
+            // we break out of the loop. Because if we dont, the game will crash.
             attempts++;
         } while (pSquare[y][x].getType() != DIRT && attempts < MAX_ATTEMPTS);
 
-        // Increase weights for neighboring tiles
+        // Increase weights for neighboring tiles.
+        // that way, we can increase the chances of placing grass tiles near each other.
+        // so that the grass tiles are not as randomly scattered.
+        // "dx" and "dy" are the x and y coordinates of the tiles around the current tile.
+        // that way we can check the tiles around the current tile.
         for (int dx = -1; dx <= 1; dx++)
         {
-            for (int dy = -1; dy <= 1; dy++)
+            for (int dy = -1; dy <= 1; dy++)//We iterate through the 8 neighboring tiles of the created tile.
             {
+                //we decided "nx" and "ny" to be "neighbor x" and "neighbor y".
+                // FIXME: A possible refactor would be to rename them.
                 int nx = x + dx;
                 int ny = y + dy;
                 // If the neighboring tile is within the map and is of type GRASS, increase its weight
@@ -82,13 +94,15 @@ void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][di
             }
         }
 
-        // Set the tile type to GRASS
+        // When all said and done, we set the tile type to GRASS
         pSquare[y][x].setType(GRASS);
     }
 
     // Place water tiles
     for (int i = 0; i < numWater; i++)
     {
+        // we define a seperate x and y for the water tiles. That way there is no overlap
+        // between the grass and water tiles.
         int x, y;
         // Find a dirt tile
         do
@@ -99,6 +113,8 @@ void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][di
         } while (pSquare[y][x].getType() != DIRT && attempts < MAX_ATTEMPTS);
 
         // Increase weights for neighboring tiles
+        // FIXME: we could refactor the names of dx and dy to be more descriptive.
+        // FIXME: to something like "neighbor x" and "neighbor y"?
         for (int dx = -1; dx <= 1; dx++)
         {
             for (int dy = -1; dy <= 1; dy++)
@@ -135,6 +151,9 @@ void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][di
 void generateCropAroundWater(Square (&pSquare)[dim][dim])
 {
     // Loop through each tile in the grid
+    // Couldn't find a way to get this interation into function form to reduce repetition.
+    // But, we kind of need this repetition to check for different conditions throughout the grid.
+    // Also, it's nice that we still only have a Big O Notation of O(n^2)...we think.
     for(int r = 0; r < dim; r++)
     {
         for(int c = 0; c < dim; c++)
@@ -143,7 +162,10 @@ void generateCropAroundWater(Square (&pSquare)[dim][dim])
             if(pSquare[r][c].getType() == WATER)
             {
                 bool hasCropAdjacent = false;
-                // Check the neighboring tiles
+                // Check the neighboring tiles to see if there's already a crop tile
+                // adjacent to the water tile
+                // Why "dr" and "dc"? We could refactor these to be more descriptive.
+                // maybe to "delta row" and "delta column"?
                 for(int dr = -1; dr <= 1; dr++)
                 {
                     for(int dc = -1; dc <= 1; dc++)
@@ -152,7 +174,8 @@ void generateCropAroundWater(Square (&pSquare)[dim][dim])
                         int nr = r + dr;
                         int nc = c + dc;
                         // If the neighboring tile is within the grid
-                        if(nr >= 0 && nr < dim && nc >= 0 && nc < dim)
+                        // Added more spacing to make it easier to read.
+                        if(nr >= 0  &&  nr < dim  &&  nc >= 0  &&  nc < dim)
                         {
                             // If the neighboring tile is a crop tile
                             if(pSquare[nr][nc].getType() == CROPS)
@@ -164,7 +187,9 @@ void generateCropAroundWater(Square (&pSquare)[dim][dim])
                     }
                     if(hasCropAdjacent)
                     {
-                        break; //Breaks to the outer loop
+                        break; //Breaks to the outer loop: for(int c = 0; c < dim; c++)
+                               // Why? Because we don't need to check the other neighboring tiles.
+                               // If we did, it would result in more unnecessary crop tiles.
                     }
                 }
                 // If there's already a crop tile adjacent to the water tile, skip to the next water tile
@@ -174,15 +199,20 @@ void generateCropAroundWater(Square (&pSquare)[dim][dim])
                 }
 
                 // Check the neighboring tiles again to find a dirt or grass tile
+                // We need to find a suitable tile to place a crop tile. Can't quite figure out
+                // how to randomize this. But, for now we just don't want the CROPS tiles to be
+                // placed over water or other CROPS tiles.
                 for(int dr = -1; dr <= 1; dr++)
                 {
                     for(int dc = -1; dc <= 1; dc++)
                     {
                         // Calculate the coordinates of the neighboring tile
+                        // FIXME: refactor names. Maybe to "neighbor row" and "neighbor column"?
                         int nr = r + dr;
                         int nc = c + dc;
-                        // If the neighboring tile is within the grid
-                        if(nr >= 0 && nr < dim && nc >= 0 && nc < dim)
+                        // If the neighboring tile is within the grid (that way there's no out of bounds errors)
+                        // Added more spacing to make it easier to read.
+                        if(nr >= 0  &&  nr < dim  &&  nc >= 0  &&  nc < dim)
                         {
                             // If the neighboring tile is either dirt or grass
                             if(pSquare[nr][nc].getType() == DIRT || pSquare[nr][nc].getType() == GRASS)

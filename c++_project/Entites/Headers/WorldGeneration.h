@@ -9,8 +9,10 @@
 #include "config.h"
 #include <random>
 
+// Big O Notation O(n^2)
 void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][dim]);
 
+// Big O Notation O(n^2)
 void generateCropAroundWater(Square (&pSquare)[dim][dim]);
 
 #endif //WORLDGENERATION_H
