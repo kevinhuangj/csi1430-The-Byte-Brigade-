@@ -29,13 +29,14 @@ void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][di
     random_device rd;
     mt19937 gen(rd());
     // This is the random number generator that will be used to generate random numbers.
-    // dis is "Distribution" which is used to generate random numbers within a range.
+    // dis is "Distribution" which is used to generate random numbers within a range. dis(min, max).
     uniform_int_distribution<> dis(0, dim - 1);
 
-    // Create a 2D array to store weights for each tile
+    // Create a 2D Vector to store weights for each tile
     vector<vector<int>> weights(dim, vector<int>(dim, 1));
 
-    // Count the number of dirt tiles or the game will crash.
+    // Count the number of dirt tiles or the game will crash when trying to place more water or
+    // grass tiles than there is dirt.
     for(int r = 0; r < dim; r++)
     {
         for (int c = 0; c < dim; c++)
@@ -164,7 +165,7 @@ void generateCropAroundWater(Square (&pSquare)[dim][dim])
                 bool hasCropAdjacent = false;
                 // Check the neighboring tiles to see if there's already a crop tile
                 // adjacent to the water tile
-                // Why "dr" and "dc"? We could refactor these to be more descriptive.
+                //FIXME: Why "dr" and "dc"? We could refactor these to be more descriptive.
                 // maybe to "delta row" and "delta column"?
                 for(int dr = -1; dr <= 1; dr++)
                 {

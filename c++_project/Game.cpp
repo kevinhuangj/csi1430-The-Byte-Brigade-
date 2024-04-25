@@ -11,8 +11,6 @@ Game::Game() : g(SIZE, SIZE)
     initData();
 }
 
-
-
 void Game::generateLoop()
 {
     while(!g.getQuit())
@@ -68,6 +66,7 @@ void Game::handleKeyPress()
             break;
         case 'q':
             findCrops(pSquare);
+            moveToCrop(pSquare);
             cout << "Q..." << endl;
 
         }

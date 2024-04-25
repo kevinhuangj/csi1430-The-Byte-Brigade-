@@ -8,6 +8,9 @@
 #include "square.h"
 #include "config.h"
 
+//Big O Notation O(n^2)
 void findCrops(Square (&pSquare)[dim][dim]);
+
+void moveToCrop(Square (&pSquare)[dim][dim]);
 
 #endif //HUMANFUNC_H

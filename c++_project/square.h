@@ -27,6 +27,17 @@ public:
 
     Square(int numNeighbors, objType type); // <-- Constructor
 
+    struct humanAttribute
+    {
+        int hunger = 4, thirst = 100;
+        void setHunger(int h)
+        {
+            hunger = h;
+        }
+    };
+
+    humanAttribute attributesHUMAN;
+
     void draw(SDL_Plotter& g);
 
     void setRow(int r);
