@@ -60,8 +60,10 @@ void Game::handleKeyPress()
         switch (key)
         {
         case 'r':
+
             if(generateRan == false)
             {
+
                 generateLoop();
                 generateRan = true;
             }
@@ -87,12 +89,80 @@ void Game::drawAndUpdate()
     g.update();
 }
 
+void Game::music() {
+
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024);
+
+
+    Mix_Music * music2 = Mix_LoadMUS("audio/5280419323445248.wav");
+    if(!music2){
+        cout << "Error: No Music";
+    }
+
+    Mix_PlayMusic(music2,-1);
+}
+
+void Game::titleScreen() {
+    point p = g.getMouseClick();
+    int x=0, y=0;
+    if(!title){
+
+
+
+        Mix_Music * music1 = Mix_LoadMUS("audio/titleMusic.wav");
+        Mix_PlayMusic(music1,-1);
+
+        for(int r = 0; r < SIZE; r++)
+        {
+            for(int c = 0; c < SIZE; c++)
+            {
+                g.plotPixel(r, c, 100, 100, 100);
+            }
+        }
+
+
+    }
+    title = true;
+    int gr = 0; int n = 200;
+    g.getMouseLocation(x,y);
+    if(y>SIZE/2-50 and y<SIZE/2+50 and x>SIZE/2-100 and x<SIZE/2+100){
+        if(p.x>0 and p.y>0){
+            g.clear();
+            music();
+            start = true;
+        }
+        gr = 200;
+        n = 0;
+    }else{
+        n = 200;
+        gr = 0;
+    }
+
+
+    for(int w = 0; w < 200; w++)
+    {
+        for(int h = 0; h < 100; h++)
+        {
+            g.plotPixel(w+SIZE/2-100, h+SIZE/2-50, n, gr, 0);
+        }
+    }
+    g.update();
+
+
+}
+
+
 void Game::run()
 {
-    while (!g.getQuit())
-    {
-        handleMouseClick();
+    while (!g.getQuit()) {
         handleKeyPress();
-        drawAndUpdate();
+
+        if (!start) {
+            titleScreen();
+        }
+        if (start) {
+            handleMouseClick();
+            drawAndUpdate();
+        }
     }
 }

@@ -20,6 +20,10 @@ private:
     SDL_Plotter g;
     Square pSquare[dim][dim];
     mutex data_mutex;
+    int mxr = Mix_Init(0);
+    bool start = false;
+    bool title = false;
+
 
 public:
     Game();
@@ -35,6 +39,10 @@ public:
     void handleKeyPress();
 
     void drawAndUpdate();
+
+    void music();
+
+    void titleScreen();
 
     void run();
 
