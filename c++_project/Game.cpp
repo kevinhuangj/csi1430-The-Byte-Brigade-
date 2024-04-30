@@ -116,34 +116,63 @@ void Game::titleScreen() {
         {
             for(int c = 0; c < SIZE; c++)
             {
-                g.plotPixel(r, c, 100, 100, 100);
+                g.plotPixel(r, c, 0, 0, 0);
             }
         }
 
 
     }
     title = true;
-    int gr = 0; int n = 200;
+    int n = 200;
     g.getMouseLocation(x,y);
-    if(y>SIZE/2-50 and y<SIZE/2+50 and x>SIZE/2-100 and x<SIZE/2+100){
+    if(y>SIZE/2-150 and y<SIZE/2+150 and x>SIZE/2-200 and x<SIZE/2+200){
         if(p.x>0 and p.y>0){
             g.clear();
             music();
             start = true;
         }
-        gr = 200;
-        n = 0;
+
+        n = 100;
     }else{
         n = 200;
-        gr = 0;
+
     }
 
+    for(int w = 0; w < 450; w++)
+    {
+        for(int h = 0; h < 350; h++)
+        {
+            g.plotPixel(w+SIZE/2-225, h+SIZE/2-175, 25, 25, 25);
 
-    for(int w = 0; w < 200; w++)
+        }
+    }
+    for(int w = 0; w < 400; w++)
+    {
+        for(int h = 0; h < 300; h++)
+        {
+            g.plotPixel(w+SIZE/2-200, h+SIZE/2-150, n+55, 0, 0);
+
+        }
+    }
+    for(int w = 0; w < 25; w++)
     {
         for(int h = 0; h < 100; h++)
         {
-            g.plotPixel(w+SIZE/2-100, h+SIZE/2-50, n, gr, 0);
+            //G
+            g.plotPixel(w+SIZE*9/24, h+SIZE/2-90, n, 0, 0);
+            g.plotPixel(h+SIZE*9/24, w+SIZE/2-90, n, 0, 0);
+            g.plotPixel(w+SIZE*9/24, h+SIZE/2-15, n, 0, 0);
+            g.plotPixel(w+SIZE*9/24+75, h+SIZE/2-15, n, 0, 0);
+            g.plotPixel(h+SIZE*9/24, w+SIZE/2+60, n, 0, 0);
+            g.plotPixel(h+SIZE*9/24+50, w+SIZE/2-15, n, 0, 0);
+            //O
+            g.plotPixel(w+SIZE*15/24-100, h+SIZE/2-90, n, 0, 0);
+            g.plotPixel(h+SIZE*15/24-100, w+SIZE/2-90, n, 0, 0);
+            g.plotPixel(w+SIZE*15/24-25, h+SIZE/2-90, n, 0, 0);
+            g.plotPixel(w+SIZE*15/24-100, h+SIZE/2-15, n, 0, 0);
+            g.plotPixel(w+SIZE*15/24-25, h+SIZE/2-15, n, 0, 0);
+            g.plotPixel(h+SIZE*15/24-100, w+SIZE/2+60, n, 0, 0);
+
         }
     }
     g.update();

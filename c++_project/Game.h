@@ -12,6 +12,7 @@
 #include "Entites/Headers/HumanFunc.h"
 #include "Entites/Headers/WorldGeneration.h"
 #include <random>
+
 using namespace std;
 
 class Game

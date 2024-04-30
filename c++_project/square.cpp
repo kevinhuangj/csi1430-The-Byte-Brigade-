@@ -113,7 +113,7 @@ void Square::click()
             _color = color(36, 29, 12); // brown
             break;
         case CROPS:
-            _color = color(100, 200, 200); // dull yellow
+            _color = color(200, 200, 100); // dull yellow
             break;
         case GRASS:
             _color = color(4, rand()%(40)+100, 9); // Dark green
