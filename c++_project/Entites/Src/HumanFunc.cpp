@@ -4,72 +4,53 @@
 
 #include "Entites/Headers/HumanFunc.h"
 
-int foundCrpCol;
-int foundCrpRow;
-bool foundCrop;
+#include <vector>
+#include <cmath>
 
+int foundCrpRow;
+int foundCrpCol;
 
 void findCrops(Square (&pSquare)[dim][dim])
 {
-    //Goes through entire grid
+    int humanRow = -1, humanCol = -1;
+    vector<int> cropsRowLocations;
+    vector<int> cropsColLocations;
+
+    // Find the human and all crops
     for(int r = 0; r < dim; r++)
     {
         for(int c = 0; c < dim; c++)
         {
-            //if the iterator comes a cross a tile that is type HUMAN
             if(pSquare[r][c].getType() == HUMAN)
             {
-                //Check to see of THIS human tile sees a crop within the immediate 8 tiles around
-                // itself. if there is a crop, we set that crop type to dirt(consuming it).
-                foundCrop = false;
-                for(int dr = -1; dr <= 1; dr++)
-                {
-                    for(int dc = -1; dc <= 1; dc++)
-                    {
-                        if(r+dr >= 0  &&  r+dr < dim  &&  c+dc >= 0  &&  c+dc < dim  &&  pSquare[r+dr][c+dc].getType() == CROPS)
-                        {
-                            foundCrop = true;
-                            pSquare[r+dr][c+dc].setType(DIRT); // Change CROPS to DIRT
-                            pSquare[r][c].attributesHUMAN.setHunger(8); // Reset the hunger of the human
-                            break;
-                        }
-                    }
-                    if(foundCrop)
-                    {
-                        pSquare[r][c].attributesHUMAN.setHunger(8); // Reset the hunger of the human
-                        break;
-                    }
-                }
-
-                if(!foundCrop)
-                {
-                    //This is to check the additional area around the already checked
-                    // immediate area around the current Human.
-                    for(int dr = -2; dr <= 2; dr++)
-                    {
-                        for(int dc = -2; dc <= 2; dc++)
-                        {
-                            if(r+dr >= 0  &&  r+dr < dim  &&  c+dc >= 0  &&  c+dc < dim  &&  pSquare[r+dr][c+dc].getType() == CROPS)
-                            {
-                                foundCrop = true;
-                                foundCrpRow = r + dr;
-                                foundCrpCol = c + dc;
-                                cout << "CROPS found at: " << r+dr << ", " << c+dc << endl; // Output the location of CROPS
-                                break;
-                            }
-                        }
-                        if(foundCrop)
-                        {
-                            break;
-                        }
-                    }
-                }
-                if(!foundCrop)
-                {
-                    pSquare[r][c].setType(GRASS);
-                }
+                humanRow = r;
+                humanCol = c;
+            }
+            else if(pSquare[r][c].getType() == CROPS)
+            {
+                cropsRowLocations.push_back(r);
+                cropsColLocations.push_back(c);
             }
         }
+    }
+
+    // Find the nearest crop within a radius of 4 squares
+    double minDistance = 10000; // Initialize to a large value
+    for(size_t i = 0; i < cropsRowLocations.size(); i++)
+    {
+        double distance = std::sqrt(std::pow(cropsRowLocations[i] - humanRow, 2) + std::pow(cropsColLocations[i] - humanCol, 2));
+        if(distance < minDistance && distance <= 4)
+        {
+            minDistance = distance;
+            foundCrpRow = cropsRowLocations[i];
+            foundCrpCol = cropsColLocations[i];
+        }
+    }
+
+    // If no crops were found within the radius, set the human's square to GRASS
+    if(minDistance == 10000)
+    {
+        pSquare[humanRow][humanCol].setType(GRASS);
     }
 }
 
@@ -96,28 +77,48 @@ void moveToCrop(Square (&pSquare)[dim][dim])
         }
     }
 
-    // Then, update the position of the HUMAN square
-    if(currentHumanRow != -1 && foundCrop)
+    // Then, check the surrounding squares and move the human to a non-water square closer to the crop
+    if(currentHumanRow != -1)
     {
         pSquare[currentHumanRow][currentHumanCol].setType(GRASS);
-        if(foundCrpRow < pSquare[currentHumanRow][currentHumanCol].getRow() && currentHumanRow > 0)
+        if(currentHumanRow > 0 && pSquare[currentHumanRow - 1][currentHumanCol].getType() != WATER && abs(foundCrpRow - (currentHumanRow - 1)) < abs(foundCrpRow - currentHumanRow))
         {
+            SDL_Delay(300);
             pSquare[currentHumanRow - 1][currentHumanCol].setType(HUMAN);
         }
-        else if(foundCrpRow > pSquare[currentHumanRow][currentHumanCol].getRow() && currentHumanRow < dim - 1)
+        else if(currentHumanRow < dim - 1 && pSquare[currentHumanRow + 1][currentHumanCol].getType() != WATER && abs(foundCrpRow - (currentHumanRow + 1)) < abs(foundCrpRow - currentHumanRow))
         {
+            SDL_Delay(300);
             pSquare[currentHumanRow + 1][currentHumanCol].setType(HUMAN);
         }
-        else if(foundCrpRow == pSquare[currentHumanRow][currentHumanCol].getRow())
+        else if(currentHumanCol > 0 && pSquare[currentHumanRow][currentHumanCol - 1].getType() != WATER && abs(foundCrpCol - (currentHumanCol - 1)) < abs(foundCrpCol - currentHumanCol))
         {
-            if(foundCrpCol < pSquare[currentHumanRow][currentHumanCol].getCol() && currentHumanCol > 0)
+            SDL_Delay(300);
+            pSquare[currentHumanRow][currentHumanCol - 1].setType(HUMAN);
+        }
+        else if(currentHumanCol < dim - 1 && pSquare[currentHumanRow][currentHumanCol + 1].getType() != WATER && abs(foundCrpCol - (currentHumanCol + 1)) < abs(foundCrpCol - currentHumanCol))
+        {
+            SDL_Delay(300);
+            pSquare[currentHumanRow][currentHumanCol + 1].setType(HUMAN);
+        }
+        else
+        {
+            // If all surrounding squares are water, check the vicinity for a non-water square closer to the crop
+            for(int r = max(0, currentHumanRow - 2); r <= min(dim - 1, currentHumanRow + 2); r++)
             {
-                pSquare[currentHumanRow][currentHumanCol - 1].setType(HUMAN);
+                for(int c = max(0, currentHumanCol - 2); c <= min(dim - 1, currentHumanCol + 2); c++)
+                {
+                    if(pSquare[r][c].getType() != WATER && abs(foundCrpRow - r) + abs(foundCrpCol - c) < abs(foundCrpRow - currentHumanRow) + abs(foundCrpCol - currentHumanCol))
+                    {
+                        SDL_Delay(300);
+                        pSquare[r][c].setType(HUMAN);
+                        return;
+                    }
+                }
             }
-            else if(foundCrpCol > pSquare[currentHumanRow][currentHumanCol].getCol() && currentHumanCol < dim - 1)
-            {
-                pSquare[currentHumanRow][currentHumanCol + 1].setType(HUMAN);
-            }
+
+            // If all squares in the vicinity are water, the human stays in its current position
+            pSquare[currentHumanRow][currentHumanCol].setType(HUMAN);
         }
     }
 }

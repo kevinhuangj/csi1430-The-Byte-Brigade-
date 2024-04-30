@@ -65,8 +65,7 @@ void Game::handleKeyPress()
             }
             break;
         case 'q':
-            findCrops(pSquare);
-            moveToCrop(pSquare);
+
             cout << "Q..." << endl;
 
         }
@@ -90,6 +89,8 @@ void Game::run()
 {
     while (!g.getQuit())
     {
+        findCrops(pSquare);
+        moveToCrop(pSquare);
         handleMouseClick();
         handleKeyPress();
         drawAndUpdate();
