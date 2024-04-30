@@ -71,7 +71,7 @@ objType Square::setType(objType t)
     switch (type)
     {
         case DIRT:
-            _color = color(36, 29, 12); // brown
+            _color = color(128, 64, 0); // brown
             break;
         case CROPS:
             _color = color(200, 200, 100); // dull yellow
@@ -110,7 +110,7 @@ void Square::click()
     switch (type)
     {
         case DIRT:
-            _color = color(36, 29, 12); // brown
+            _color = color(128, 64, 0); // brown
             break;
         case CROPS:
             _color = color(200, 200, 100); // dull yellow

@@ -61,12 +61,7 @@ void Game::handleKeyPress()
         {
         case 'r':
 
-            if(generateRan == false)
-            {
 
-                generateLoop();
-                generateRan = true;
-            }
             break;
         case 'q':
             findCrops(pSquare);
@@ -85,7 +80,7 @@ void Game::drawAndUpdate()
             pSquare[r][c].draw(g);
         }
     }
-    drawGrid(g);
+    //drawGrid(g);
     g.update();
 }
 
@@ -105,6 +100,8 @@ void Game::music() {
 void Game::titleScreen() {
     point p = g.getMouseClick();
     int x=0, y=0;
+    int n = 200;
+    int gr = 0;
     if(!title){
 
 
@@ -116,33 +113,37 @@ void Game::titleScreen() {
         {
             for(int c = 0; c < SIZE; c++)
             {
-                g.plotPixel(r, c, 0, 0, 0);
+                g.plotPixel(r, c, 25, 25, 25);
             }
         }
 
 
     }
     title = true;
-    int n = 200;
+
     g.getMouseLocation(x,y);
     if(y>SIZE/2-150 and y<SIZE/2+150 and x>SIZE/2-200 and x<SIZE/2+200){
         if(p.x>0 and p.y>0){
-            g.clear();
+
+
+            gr = 150;
+            n = 0;
             music();
             start = true;
+        }else{
+            gr = 0;
         }
 
         n = 100;
     }else{
         n = 200;
-
     }
 
     for(int w = 0; w < 450; w++)
     {
         for(int h = 0; h < 350; h++)
         {
-            g.plotPixel(w+SIZE/2-225, h+SIZE/2-175, 25, 25, 25);
+            g.plotPixel(w+SIZE/2-225, h+SIZE/2-175, 40, 40, 40);
 
         }
     }
@@ -150,7 +151,7 @@ void Game::titleScreen() {
     {
         for(int h = 0; h < 300; h++)
         {
-            g.plotPixel(w+SIZE/2-200, h+SIZE/2-150, n+55, 0, 0);
+            g.plotPixel(w+SIZE/2-200, h+SIZE/2-150, n*55/100, gr, 0);
 
         }
     }
@@ -159,24 +160,37 @@ void Game::titleScreen() {
         for(int h = 0; h < 100; h++)
         {
             //G
-            g.plotPixel(w+SIZE*9/24, h+SIZE/2-90, n, 0, 0);
-            g.plotPixel(h+SIZE*9/24, w+SIZE/2-90, n, 0, 0);
-            g.plotPixel(w+SIZE*9/24, h+SIZE/2-15, n, 0, 0);
-            g.plotPixel(w+SIZE*9/24+75, h+SIZE/2-15, n, 0, 0);
-            g.plotPixel(h+SIZE*9/24, w+SIZE/2+60, n, 0, 0);
-            g.plotPixel(h+SIZE*9/24+50, w+SIZE/2-15, n, 0, 0);
+            g.plotPixel(w+SIZE*9/24, h+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*9/24, w+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*9/24, h+SIZE/2-15, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*9/24+75, h+SIZE/2-15, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*9/24, w+SIZE/2+60, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*9/24+50, w+SIZE/2-15, n, gr*200/150, 0);
             //O
-            g.plotPixel(w+SIZE*15/24-100, h+SIZE/2-90, n, 0, 0);
-            g.plotPixel(h+SIZE*15/24-100, w+SIZE/2-90, n, 0, 0);
-            g.plotPixel(w+SIZE*15/24-25, h+SIZE/2-90, n, 0, 0);
-            g.plotPixel(w+SIZE*15/24-100, h+SIZE/2-15, n, 0, 0);
-            g.plotPixel(w+SIZE*15/24-25, h+SIZE/2-15, n, 0, 0);
-            g.plotPixel(h+SIZE*15/24-100, w+SIZE/2+60, n, 0, 0);
+            g.plotPixel(w+SIZE*15/24-100, h+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*15/24-100, w+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*15/24-25, h+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*15/24-100, h+SIZE/2-15, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*15/24-25, h+SIZE/2-15, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*15/24-100, w+SIZE/2+60, n, gr*200/150, 0);
 
         }
     }
     g.update();
 
+    if(start){
+        for (int i = 0; i < 5; i++) {
+            for (int r = i; r < SIZE; r += 3) {
+                for (int c = i; c < SIZE; c += 3) {
+                    g.plotPixel(r, c, 128, 64, 0);
+                }
+                //if(r%2==0) {
+                g.update();
+                //}
+            }
+        }
+
+    }
 
 }
 
@@ -184,14 +198,22 @@ void Game::titleScreen() {
 void Game::run()
 {
     while (!g.getQuit()) {
-        handleKeyPress();
+
 
         if (!start) {
             titleScreen();
         }
         if (start) {
+            if(generateRan == false)
+            {
+
+                generateLoop();
+                generateRan = true;
+            }else{
+            handleKeyPress();
             handleMouseClick();
             drawAndUpdate();
+            }
         }
     }
 }
