@@ -81,22 +81,26 @@ void moveToCrop(Square (&pSquare)[dim][dim])
     if(currentHumanRow != -1)
     {
         pSquare[currentHumanRow][currentHumanCol].setType(GRASS);
-        if(currentHumanRow > 0 && pSquare[currentHumanRow - 1][currentHumanCol].getType() != WATER && abs(foundCrpRow - (currentHumanRow - 1)) < abs(foundCrpRow - currentHumanRow))
+        if(currentHumanRow > 0 && pSquare[currentHumanRow - 1][currentHumanCol].getType() != (WATER) && pSquare[currentHumanRow - 1][currentHumanCol].getType() != HUMAN
+        && abs(foundCrpRow - (currentHumanRow - 1)) < abs(foundCrpRow - currentHumanRow))
         {
             SDL_Delay(300);
             pSquare[currentHumanRow - 1][currentHumanCol].setType(HUMAN);
         }
-        else if(currentHumanRow < dim - 1 && pSquare[currentHumanRow + 1][currentHumanCol].getType() != WATER && abs(foundCrpRow - (currentHumanRow + 1)) < abs(foundCrpRow - currentHumanRow))
+        else if(currentHumanRow < dim - 1 && pSquare[currentHumanRow + 1][currentHumanCol].getType() != WATER && currentHumanRow < dim - 1 && pSquare[currentHumanRow + 1][currentHumanCol].getType() != HUMAN
+        && abs(foundCrpRow - (currentHumanRow + 1)) < abs(foundCrpRow - currentHumanRow))
         {
             SDL_Delay(300);
             pSquare[currentHumanRow + 1][currentHumanCol].setType(HUMAN);
         }
-        else if(currentHumanCol > 0 && pSquare[currentHumanRow][currentHumanCol - 1].getType() != WATER && abs(foundCrpCol - (currentHumanCol - 1)) < abs(foundCrpCol - currentHumanCol))
+        else if(currentHumanCol > 0 && pSquare[currentHumanRow][currentHumanCol - 1].getType() != WATER && currentHumanCol > 0 && pSquare[currentHumanRow][currentHumanCol - 1].getType() != HUMAN
+        && abs(foundCrpCol - (currentHumanCol - 1)) < abs(foundCrpCol - currentHumanCol))
         {
             SDL_Delay(300);
             pSquare[currentHumanRow][currentHumanCol - 1].setType(HUMAN);
         }
-        else if(currentHumanCol < dim - 1 && pSquare[currentHumanRow][currentHumanCol + 1].getType() != WATER && abs(foundCrpCol - (currentHumanCol + 1)) < abs(foundCrpCol - currentHumanCol))
+        else if(currentHumanCol < dim - 1 && pSquare[currentHumanRow][currentHumanCol + 1].getType() != WATER && currentHumanCol < dim - 1 && pSquare[currentHumanRow][currentHumanCol + 1].getType() != HUMAN
+        && abs(foundCrpCol - (currentHumanCol + 1)) < abs(foundCrpCol - currentHumanCol))
         {
             SDL_Delay(300);
             pSquare[currentHumanRow][currentHumanCol + 1].setType(HUMAN);
@@ -108,7 +112,7 @@ void moveToCrop(Square (&pSquare)[dim][dim])
             {
                 for(int c = max(0, currentHumanCol - 2); c <= min(dim - 1, currentHumanCol + 2); c++)
                 {
-                    if(pSquare[r][c].getType() != WATER && abs(foundCrpRow - r) + abs(foundCrpCol - c) < abs(foundCrpRow - currentHumanRow) + abs(foundCrpCol - currentHumanCol))
+                    if(pSquare[r][c].getType() != WATER && pSquare[r][c].getType() != HUMAN && abs(foundCrpRow - r) + abs(foundCrpCol - c) < abs(foundCrpRow - currentHumanRow) + abs(foundCrpCol - currentHumanCol))
                     {
                         SDL_Delay(300);
                         pSquare[r][c].setType(HUMAN);
