@@ -81,18 +81,161 @@ void Game::drawAndUpdate()
             pSquare[r][c].draw(g);
         }
     }
-    drawGrid(g);
+    //drawGrid(g);
     g.update();
 }
 
+void Game::music() {
+
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024);
+
+
+    Mix_Music * music2 = Mix_LoadMUS("audio/5280419323445248.wav");
+    if(!music2){
+        cout << "Error: No Music";
+    }
+
+    Mix_PlayMusic(music2,-1);
+}
+
+
+//This goes in Game.h in the PRIVATE:
+
+int mxr = Mix_Init(0);
+
+
+
+
+void Game::titleScreen() {
+    point p = g.getMouseClick();
+    int x=0, y=0;
+    int n = 200;
+    int gr = 0;
+    if(!title){
+
+
+
+        Mix_Music * music1 = Mix_LoadMUS("audio/titleMusic.wav");
+        Mix_PlayMusic(music1,-1);
+
+        for(int r = 0; r < SIZE; r++)
+        {
+            for(int c = 0; c < SIZE; c++)
+            {
+                g.plotPixel(r, c, 25, 25, 25);
+            }
+        }
+
+
+    }
+    title = true;
+
+    g.getMouseLocation(x,y);
+    if(y>SIZE/2-150 and y<SIZE/2+150 and x>SIZE/2-200 and x<SIZE/2+200){
+        if(p.x>0 and p.y>0){
+
+
+            gr = 150;
+            n = 0;
+            music();
+            start = true;
+        }else{
+            gr = 0;
+        }
+
+        n = 100;
+    }else{
+        n = 200;
+    }
+
+    for(int w = 0; w < 450; w++)
+    {
+        for(int h = 0; h < 350; h++)
+        {
+            g.plotPixel(w+SIZE/2-225, h+SIZE/2-175, 40, 40, 40);
+
+        }
+    }
+    for(int w = 0; w < 400; w++)
+    {
+        for(int h = 0; h < 300; h++)
+        {
+            g.plotPixel(w+SIZE/2-200, h+SIZE/2-150, n*55/100, gr, 0);
+
+        }
+    }
+    for(int w = 0; w < 25; w++)
+    {
+        for(int h = 0; h < 100; h++)
+        {
+            //G
+            g.plotPixel(w+SIZE*9/24, h+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*9/24, w+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*9/24, h+SIZE/2-15, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*9/24+75, h+SIZE/2-15, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*9/24, w+SIZE/2+60, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*9/24+50, w+SIZE/2-15, n, gr*200/150, 0);
+            //O
+            g.plotPixel(w+SIZE*15/24-100, h+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*15/24-100, w+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*15/24-25, h+SIZE/2-90, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*15/24-100, h+SIZE/2-15, n, gr*200/150, 0);
+            g.plotPixel(w+SIZE*15/24-25, h+SIZE/2-15, n, gr*200/150, 0);
+            g.plotPixel(h+SIZE*15/24-100, w+SIZE/2+60, n, gr*200/150, 0);
+
+        }
+    }
+    g.update();
+
+    if(start){
+        for (int i = 4; i > 0; i--) {
+            for (int r = 0; r < SIZE; r += i) {
+                for (int c = 0; c < SIZE; c += i) {
+                    g.plotPixel(r, c, 128, 64, 0);
+                }
+
+                g.update();
+
+            }
+
+        for (int r = SIZE+1; r >= 0; r -= i) {
+            for (int c = SIZE+1; c >= 0; c -= i) {
+                g.plotPixel(r, c, 128, 64, 0);
+            }
+
+            g.update();
+
+        }
+    }
+
+}
+
+}
+
+
 void Game::run()
 {
-    while (!g.getQuit())
-    {
-        findCrops(pSquare);
-        moveToCrop(pSquare);
-        handleMouseClick();
-        handleKeyPress();
-        drawAndUpdate();
+    while (!g.getQuit()) {
+
+
+        if (!start) {
+            titleScreen();
+        }
+        if (start) {
+            if(generateRan == false)
+            {
+
+                generateLoop();
+                generateRan = true;
+            }else{
+                findCrops(pSquare);
+                moveToCrop(pSquare);
+                handleMouseClick();
+                handleKeyPress();
+                drawAndUpdate();
+            }
+        }
     }
 }
+
+

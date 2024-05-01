@@ -74,22 +74,34 @@ objType Square::setType(objType t)
             _color = color(128, 64, 0); // brown
             break;
         case CROPS:
-            _color = color(255, 255, 0); // bright yellow
+            _color = color(200, 200, 100); // dull yellow
             break;
         case GRASS:
-            _color = color(0, 128, 0); // Dark green
+            _color = color(4, rand()%(40)+100, 9); // Dark green
             break;
-        case HUMAN:
-            _color = color(255, 0, 0); // bright red
+        case HUMAN: {
+            _color = color(185, 180, 180); // bright tan
+            Mix_Chunk * soundHuman = Mix_LoadWAV("audio/human_voice_male_grunt_grumble_caveman_001.wav");
+            Mix_PlayChannel(-1, soundHuman, 0);
             break;
-        case MAMMOTH:
-            _color = color(0, 165, 255); // Baby blue
+        }
+        case MAMMOTH: {
+            _color = color(183, 114, 196); // pinkish
+            Mix_Chunk *soundMamoth = Mix_LoadWAV(
+                    "audio/elephant-trumpets-growls-6047.wav");
+            Mix_PlayChannel(-1, soundMamoth, 0);
             break;
-        case TIGER:
+        }
+        case TIGER: {
             _color = color(255, 165, 0); // orange
+            Mix_Chunk * soundTiger = Mix_LoadWAV("audio/mixkit-angry-wild-cat-roar-89.wav");
+            Mix_PlayChannel(-1, soundTiger, 0);
             break;
+        }
         case WATER:
-            _color = color(0, 0, 255); // blue
+            _color = color(0, 0, rand()%(40)+200); // blue`
+
+
     }
     return type;
 }
@@ -103,22 +115,34 @@ void Square::click()
             _color = color(128, 64, 0); // brown
             break;
         case CROPS:
-            _color = color(255, 255, 0); // bright yellow
+            _color = color(200, 200, 100); // dull yellow
             break;
         case GRASS:
-            _color = color(0, 128, 0); // Dark green
+            _color = color(4, rand()%(40)+100, 9); // Dark green
             break;
-        case HUMAN:
-            _color = color(255, 0, 0); // bright red
+        case HUMAN: {
+            _color = color(185, 180, 180); // bright tan
+            Mix_Chunk * soundHuman = Mix_LoadWAV("audio/human_voice_male_grunt_grumble_caveman_001.wav");
+            Mix_PlayChannel(-1, soundHuman, 0);
             break;
-        case MAMMOTH:
-            _color = color(0, 165, 255); // Baby blue
+        }
+        case MAMMOTH: {
+            _color = color(183, 114, 196); // pinkish
+            Mix_Chunk *soundMamoth = Mix_LoadWAV(
+                    "audio/elephant-trumpets-growls-6047.wav");
+            Mix_PlayChannel(-1, soundMamoth, 0);
             break;
-        case TIGER:
+        }
+        case TIGER: {
             _color = color(255, 165, 0); // orange
+            Mix_Chunk * soundTiger = Mix_LoadWAV("audio/mixkit-angry-wild-cat-roar-89.wav");
+            Mix_PlayChannel(-1, soundTiger, 0);
             break;
+        }
         case WATER:
-            _color = color(0, 0, 255); // blue
+            _color = color(0, 0, rand()%(40)+200); // blue`
+
+
     }
 }
 

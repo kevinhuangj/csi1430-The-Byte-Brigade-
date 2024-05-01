@@ -13,7 +13,7 @@
 #include "PLOTTER/SDL_Plotter.h"
 #include "config.h"
 #include "grid.h"
-
+#include <random>
 class Square
 {
 

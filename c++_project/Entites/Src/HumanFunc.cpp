@@ -39,7 +39,7 @@ void findCrops(Square (&pSquare)[dim][dim])
     for(size_t i = 0; i < cropsRowLocations.size(); i++)
     {
         double distance = std::sqrt(std::pow(cropsRowLocations[i] - humanRow, 2) + std::pow(cropsColLocations[i] - humanCol, 2));
-        if(distance < minDistance && distance <= 4)
+        if(distance < minDistance && distance <= 8)
         {
             minDistance = distance;
             foundCrpRow = cropsRowLocations[i];
