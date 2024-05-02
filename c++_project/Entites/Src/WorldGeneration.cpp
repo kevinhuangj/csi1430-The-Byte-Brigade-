@@ -3,6 +3,8 @@
 //
 #include "Entites/Headers/WorldGeneration.h"
 
+bool wasCrop[dim][dim] = {false};
+
 void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][dim])
 {
     /*
@@ -220,12 +222,32 @@ void generateCropAroundWater(Square (&pSquare)[dim][dim])
                             {
                                 // Change the neighboring tile to a crop tile
                                 pSquare[nr][nc].setType(CROPS);
-                                // Return after changing the first suitable tile
+                                pSquare[nr][nc].setWasCrop(true);
+                                wasCrop[nr][nc] = true; // Store the coordinates
                                 return;
                             }
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+void cropRegeneration(Square (&pSquare)[dim][dim])
+{
+    // Iterate over the entire grid to check for cells that need to be regenerated
+    for(int r = 0; r < dim; r++)
+    {
+        for(int c = 0; c < dim; c++)
+        {
+            // If the cell was once a crop and is currently grass
+            if(wasCrop[r][c] && pSquare[r][c].getType() == GRASS)
+            {
+                // Change the cell type to crops
+                pSquare[r][c].setType(CROPS);
+                // Print a message indicating the coordinates of the regenerated crop
+                std::cout << "Crop regenerated at coordinates: (" << r << ", " << c << ")" << std::endl;
             }
         }
     }

@@ -22,7 +22,9 @@ private:
     objType type;
     color _color;
     int numNeighbors;
+    bool wasCrop = false;
 public:
+
     Square(); // <-- Constructor
 
     Square(int numNeighbors, objType type); // <-- Constructor
@@ -35,9 +37,13 @@ public:
 
     void click();
 
-    int getRow();
+    bool getWasCrop() const;
 
-    int getCol();
+    bool setWasCrop(bool crop);
+
+    int getRow() const;
+
+    int getCol() const;
 
     int getNumNeighbors() const;
 

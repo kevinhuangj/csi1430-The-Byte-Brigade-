@@ -16,6 +16,7 @@ Square::Square() // <-- Constructor
     numNeighbors = 0;
     //color brown = color(128, 64, 0);
     _color = color(128, 64, 0);
+    wasCrop = false;
 }
 
 Square::Square(int numNeighbors, objType type)
@@ -25,6 +26,7 @@ Square::Square(int numNeighbors, objType type)
     numNeighbors = 0;
     type = DIRT;
     _color = color(128, 64, 0);
+    wasCrop = false;
 }
 
 void Square::draw(SDL_Plotter& g)
@@ -48,12 +50,23 @@ void Square::setCol(int c)
     col = c;
 }
 
-int Square::getRow()
+bool Square::getWasCrop() const
+{
+    return wasCrop;
+}
+
+bool Square::setWasCrop(bool crop)
+{
+    wasCrop = crop;
+    return wasCrop;
+}
+
+int Square::getRow() const
 {
     return row;
 }
 
-int Square::getCol()
+int Square::getCol() const
 {
     return col;
 }
@@ -141,7 +154,6 @@ void Square::click()
         }
         case WATER:
             _color = color(0, 0, rand()%(40)+200); // blue`
-
 
     }
 }

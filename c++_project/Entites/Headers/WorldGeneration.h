@@ -15,4 +15,6 @@ void generateGrassAndWater(int numGrass, int numWater, Square (&pSquare)[dim][di
 // Big O Notation O(n^2)
 void generateCropAroundWater(Square (&pSquare)[dim][dim]);
 
+void cropRegeneration(Square (&pSquare)[dim][dim]);
+
 #endif //WORLDGENERATION_H
