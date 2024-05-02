@@ -39,7 +39,7 @@ void findGrass(Square (&pSquare)[dim][dim])
         }
     }
 
-    // Find the nearest crop within a radius of 4 squares
+    // Find the nearest Grass within a radius of 4 squares
     double minDistance = 10000; // Initialize to a large value
     for(size_t i = 0; i < grassRowLocations.size(); i++)
     {
@@ -64,12 +64,14 @@ void moveToGrass(Square (&pSquare)[dim][dim])
     int currentmammothRow = -1;
     int currentmammothCol = -1;
 
-    // First, find the MAMMOTH square and store its position and its random
+    // First, find the MAMMOTH square and store its position from a random side of the screen
     int MMTrandRow = rand()%2;
     int MMTrandCol = rand()%2;
 
+    // top to bottom
     if(MMTrandRow == 0) {
         for (int r = 0; r < dim; r++) {
+            // left to right
             if(MMTrandCol == 0) {
                 for (int c = 0; c < dim; c++) {
                     if (pSquare[r][c].getType() == MAMMOTH) {
@@ -79,6 +81,7 @@ void moveToGrass(Square (&pSquare)[dim][dim])
                     }
                 }
             }else{
+                // right to left
                 for (int c = dim; c >= 0; c--) {
                     if (pSquare[r][c].getType() == MAMMOTH) {
                         currentmammothRow = r;
@@ -93,8 +96,10 @@ void moveToGrass(Square (&pSquare)[dim][dim])
             }
         }
     }else{
+        //bottom to top
         for (int r = dim; r >= 0; r--) {
             if(MMTrandCol == 0) {
+                //left to right
                 for (int c = 0; c < dim; c++) {
                     if (pSquare[r][c].getType() == MAMMOTH) {
                         currentmammothRow = r;
@@ -103,6 +108,7 @@ void moveToGrass(Square (&pSquare)[dim][dim])
                     }
                 }
             }else{
+                // right to left
                 for (int c = dim; c >= 0; c--) {
                     if (pSquare[r][c].getType() == MAMMOTH) {
                         currentmammothRow = r;
@@ -118,7 +124,7 @@ void moveToGrass(Square (&pSquare)[dim][dim])
         }
     }
 
-    // Then, check the surrounding squares and move the MAMMOTH to a non-water square closer to the crop
+    // Then, check the surrounding squares and move the MAMMOTH to a non-water of MAMMOTH square closer to the Grass
     if(currentmammothRow != -1)
     {
         pSquare[currentmammothRow][currentmammothCol].setType(DIRT);
@@ -148,7 +154,7 @@ void moveToGrass(Square (&pSquare)[dim][dim])
         }
         else
         {
-            // If all surrounding squares are water, check the vicinity for a non-water square closer to the crop
+            // If all surrounding squares are water, check the vicinity for a non-water square closer to the grass
             for(int r = max(0, currentmammothRow - 2); r <= min(dim - 1, currentmammothRow + 2); r++)
             {
                 for(int c = max(0, currentmammothCol - 2); c <= min(dim - 1, currentmammothCol + 2); c++)

@@ -16,7 +16,7 @@
 #include "Game.h"
 
 using namespace std;
-
+// Runs everything
 int main(int argc, char* argv[])
 {
     Game game;

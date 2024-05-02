@@ -64,11 +64,13 @@ void moveToCrop(Square (&pSquare)[dim][dim])
     int currentHumanRow = -1;
     int currentHumanCol = -1;
 
-    // First, find the HUMAN square and store its position and its random
+    // First, find the HUMAN square and store its position from a random side of the screen
     int HMNrandRow = rand()%2;
     int HMNrandCol = rand()%2;
 
+    //starts at top row
     if(HMNrandRow == 0) {
+        // left to right
         for (int r = 0; r < dim; r++) {
             if(HMNrandCol == 0) {
                 for (int c = 0; c < dim; c++) {
@@ -79,6 +81,7 @@ void moveToCrop(Square (&pSquare)[dim][dim])
                     }
                 }
             }else{
+                // right to left
                 for (int c = dim; c >= 0; c--) {
                     if (pSquare[r][c].getType() == HUMAN) {
                         currentHumanRow = r;
@@ -93,8 +96,10 @@ void moveToCrop(Square (&pSquare)[dim][dim])
             }
         }
     }else{
+        //starts at bottom row
         for (int r = dim; r >= 0; r--) {
             if(HMNrandCol == 0) {
+                // left to right
                 for (int c = 0; c < dim; c++) {
                     if (pSquare[r][c].getType() == HUMAN) {
                         currentHumanRow = r;
@@ -103,6 +108,7 @@ void moveToCrop(Square (&pSquare)[dim][dim])
                     }
                 }
             }else{
+                // right to left
                 for (int c = dim; c >= 0; c--) {
                     if (pSquare[r][c].getType() == HUMAN) {
                         currentHumanRow = r;

@@ -11,6 +11,7 @@ Game::Game() : g(SIZE, SIZE)
     initData();
 }
 
+// Makes the random game board every time it is ran.
 void Game::generateLoop()
 {
     while(!g.getQuit())
@@ -28,6 +29,7 @@ void Game::generateLoop()
     }
 }
 
+// Lets each square know its position
 void Game::initData()
 {
     for(int r = 0; r < dim; r++)
@@ -40,6 +42,7 @@ void Game::initData()
     }
 }
 
+// Measures the x and y of the mouse when I clicks and updates the square
 void Game::handleMouseClick()
 {
     if(g.mouseClick())
@@ -50,6 +53,7 @@ void Game::handleMouseClick()
     }
 }
 
+// loaded key with pause and unpause
 void Game::handleKeyPress()
 {
     if(g.kbhit())
@@ -66,14 +70,12 @@ void Game::handleKeyPress()
             }
             cout << 'r' << endl;
             break;
-        case 'q':
-
-            cout << "Q..." << endl;
 
         }
     }
 }
 
+// Updates every sqaure
 void Game::drawAndUpdate()
 {
     for(int r = 0; r < dim; r++)
@@ -83,10 +85,10 @@ void Game::drawAndUpdate()
             pSquare[r][c].draw(g);
         }
     }
-    //drawGrid(g);
     g.update();
 }
 
+// Music function
 void Game::music() {
 
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024);
@@ -107,7 +109,7 @@ int mxr = Mix_Init(0);
 
 
 
-
+//plots pixles in the shape of a button and when mouse is in the range the collors change and if click title screen ends
 void Game::titleScreen() {
     point p = g.getMouseClick();
     int x=0, y=0;
@@ -189,6 +191,7 @@ void Game::titleScreen() {
     }
     g.update();
 
+
     if(start){
         for (int i = 4; i > 0; i--) {
             for (int r = 0; r < SIZE; r += i) {
@@ -214,7 +217,7 @@ void Game::titleScreen() {
 
 }
 
-
+//function for the general running of the game
 void Game::run()
 {
     while (!g.getQuit()) {
@@ -223,6 +226,7 @@ void Game::run()
         if (!start) {
             titleScreen();
         }
+        //start is trigered when the title screen is finished
         if (start) {
             if(generateRan == false)
             {
@@ -232,6 +236,7 @@ void Game::run()
             }else{
                 handleKeyPress();
                 handleMouseClick();
+                //when 'r' is pressed the pause is undone.
                 if(!paused) {
                     int choser = rand() % 3 + 1;
                     if (choser >= 2) {

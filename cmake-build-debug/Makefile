@@ -224,30 +224,6 @@ c++_project/Entites/Src/WorldGeneration.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\csi1430_The_Byte_Brigade_.dir\build.make CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/WorldGeneration.cpp.s
 .PHONY : c++_project/Entites/Src/WorldGeneration.cpp.s
 
-c++_project/Entites/Src/cropFunc.obj: c++_project/Entites/Src/cropFunc.cpp.obj
-.PHONY : c++_project/Entites/Src/cropFunc.obj
-
-# target to build an object file
-c++_project/Entites/Src/cropFunc.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\csi1430_The_Byte_Brigade_.dir\build.make CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj
-.PHONY : c++_project/Entites/Src/cropFunc.cpp.obj
-
-c++_project/Entites/Src/cropFunc.i: c++_project/Entites/Src/cropFunc.cpp.i
-.PHONY : c++_project/Entites/Src/cropFunc.i
-
-# target to preprocess a source file
-c++_project/Entites/Src/cropFunc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\csi1430_The_Byte_Brigade_.dir\build.make CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.i
-.PHONY : c++_project/Entites/Src/cropFunc.cpp.i
-
-c++_project/Entites/Src/cropFunc.s: c++_project/Entites/Src/cropFunc.cpp.s
-.PHONY : c++_project/Entites/Src/cropFunc.s
-
-# target to generate assembly for a file
-c++_project/Entites/Src/cropFunc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\csi1430_The_Byte_Brigade_.dir\build.make CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.s
-.PHONY : c++_project/Entites/Src/cropFunc.cpp.s
-
 c++_project/Game.obj: c++_project/Game.cpp.obj
 .PHONY : c++_project/Game.obj
 
@@ -389,9 +365,6 @@ help:
 	@echo ... c++_project/Entites/Src/WorldGeneration.obj
 	@echo ... c++_project/Entites/Src/WorldGeneration.i
 	@echo ... c++_project/Entites/Src/WorldGeneration.s
-	@echo ... c++_project/Entites/Src/cropFunc.obj
-	@echo ... c++_project/Entites/Src/cropFunc.i
-	@echo ... c++_project/Entites/Src/cropFunc.s
 	@echo ... c++_project/Game.obj
 	@echo ... c++_project/Game.i
 	@echo ... c++_project/Game.s

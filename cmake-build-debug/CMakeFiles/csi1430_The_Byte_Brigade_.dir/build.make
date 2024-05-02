@@ -173,26 +173,11 @@ CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/WorldGeneration
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/WorldGeneration.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\c++_project\Entites\Src\WorldGeneration.cpp -o CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\WorldGeneration.cpp.s
 
-CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj: CMakeFiles/csi1430_The_Byte_Brigade_.dir/flags.make
-CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj: CMakeFiles/csi1430_The_Byte_Brigade_.dir/includes_CXX.rsp
-CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj: C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Entites/Src/cropFunc.cpp
-CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj: CMakeFiles/csi1430_The_Byte_Brigade_.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj -MF CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\cropFunc.cpp.obj.d -o CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\cropFunc.cpp.obj -c C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\c++_project\Entites\Src\cropFunc.cpp
-
-CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\c++_project\Entites\Src\cropFunc.cpp > CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\cropFunc.cpp.i
-
-CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\c++_project\Entites\Src\cropFunc.cpp -o CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\cropFunc.cpp.s
-
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj: CMakeFiles/csi1430_The_Byte_Brigade_.dir/flags.make
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj: CMakeFiles/csi1430_The_Byte_Brigade_.dir/includes_CXX.rsp
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj: C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Entites/Src/TigerFunc.cpp
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj: CMakeFiles/csi1430_The_Byte_Brigade_.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj -MF CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\TigerFunc.cpp.obj.d -o CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\TigerFunc.cpp.obj -c C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\c++_project\Entites\Src\TigerFunc.cpp
 
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.i: cmake_force
@@ -207,7 +192,7 @@ CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.obj: CMakeFiles/csi1430_The_Byte_Brigade_.dir/includes_CXX.rsp
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.obj: C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Entites/Src/MamothFunc.cpp
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.obj: CMakeFiles/csi1430_The_Byte_Brigade_.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.obj"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.obj -MF CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\MamothFunc.cpp.obj.d -o CMakeFiles\csi1430_The_Byte_Brigade_.dir\c++_project\Entites\Src\MamothFunc.cpp.obj -c C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\c++_project\Entites\Src\MamothFunc.cpp
 
 CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.i: cmake_force
@@ -227,7 +212,6 @@ csi1430_The_Byte_Brigade__OBJECTS = \
 "CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/square.cpp.obj" \
 "CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/HumanFunc.cpp.obj" \
 "CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/WorldGeneration.cpp.obj" \
-"CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj" \
 "CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj" \
 "CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.obj"
 
@@ -241,14 +225,13 @@ csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_proj
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/square.cpp.obj
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/HumanFunc.cpp.obj
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/WorldGeneration.cpp.obj
-csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/TigerFunc.cpp.obj
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/MamothFunc.cpp.obj
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/build.make
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/linkLibs.rsp
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/objects1.rsp
 csi1430_The_Byte_Brigade_.exe: CMakeFiles/csi1430_The_Byte_Brigade_.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable csi1430_The_Byte_Brigade_.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable csi1430_The_Byte_Brigade_.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\csi1430_The_Byte_Brigade_.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

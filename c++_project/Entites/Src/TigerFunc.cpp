@@ -22,7 +22,7 @@ void findPeeps(Square (&pSquare)[dim][dim])
     vector<int> HmnsRowLocations;
     vector<int> HmnsColLocations;
 
-    // Find the Tiger and all crops
+    // Find the Tiger and all People
     for(int r = 0; r < dim; r++)
     {
         for(int c = 0; c < dim; c++)
@@ -40,7 +40,7 @@ void findPeeps(Square (&pSquare)[dim][dim])
         }
     }
 
-    // Find the nearest crop within a radius of 4 squares
+    // Find the nearest Huamn within a radius of 4 squares
     double minDistance = 10000; // Initialize to a large value
     for(size_t i = 0; i < HmnsRowLocations.size(); i++)
     {
@@ -53,7 +53,7 @@ void findPeeps(Square (&pSquare)[dim][dim])
         }
     }
 
-    // If no crops were found within the radius, set the Tiger's square to GRASS
+    // If no crops were found within the radius, set the Tiger's square to People
     if(minDistance == 10000)
     {
         pSquare[tigerRow][tigerCol].setType(GRASS);
@@ -65,12 +65,13 @@ void moveToPeep(Square (&pSquare)[dim][dim])
     int currentTigerRow = -1;
     int currentTigerCol = -1;
 
-    // First, find the Tiger square and store its position
+    // First, find the Tiger square and store its position from a random side of the screen
     TGRrandRow = rand()%2;
     TGRrandCol = rand()%2;
-
+    //starts at top row
     if(TGRrandRow == 0) {
         for (int r = 0; r < dim; r++) {
+            //left to right
             if(TGRrandCol == 0) {
                 for (int c = 0; c < dim; c++) {
                     if (pSquare[r][c].getType() == TIGER) {
@@ -80,6 +81,7 @@ void moveToPeep(Square (&pSquare)[dim][dim])
                     }
                 }
             }else{
+                // right to left
                 for (int c = dim; c >= 0; c--) {
                     if (pSquare[r][c].getType() == TIGER) {
                         currentTigerRow = r;
@@ -94,8 +96,10 @@ void moveToPeep(Square (&pSquare)[dim][dim])
             }
         }
     }else{
+        //starts at bottom row
         for (int r = dim; r >= 0; r--) {
             if(TGRrandCol == 0) {
+                //left to right
                 for (int c = 0; c < dim; c++) {
                     if (pSquare[r][c].getType() == TIGER) {
                         currentTigerRow = r;
@@ -105,6 +109,7 @@ void moveToPeep(Square (&pSquare)[dim][dim])
                 }
             }else{
                 for (int c = dim; c >= 0; c--) {
+                    //right to left
                     if (pSquare[r][c].getType() == TIGER) {
                         currentTigerRow = r;
                         currentTigerCol = c;
@@ -120,7 +125,7 @@ void moveToPeep(Square (&pSquare)[dim][dim])
     }
 
 
-    // Then, check the surrounding squares and move the Tiger to a non-water square closer to the crop
+    // Then, check the surrounding squares and move the Tiger to a non-water or fellow Tiger square closer to the crop
     if(currentTigerRow != -1)
     {
         pSquare[currentTigerRow][currentTigerCol].setType(GRASS);

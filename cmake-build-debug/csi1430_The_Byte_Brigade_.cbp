@@ -96,9 +96,6 @@
 		<Unit filename="C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Entites/Headers/WorldGeneration.h">
 			<Option target="csi1430_The_Byte_Brigade_"/>
 		</Unit>
-		<Unit filename="C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Entites/Headers/cropFunc.h">
-			<Option target="csi1430_The_Byte_Brigade_"/>
-		</Unit>
 		<Unit filename="C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Entites/Src/HumanFunc.cpp">
 			<Option target="csi1430_The_Byte_Brigade_"/>
 		</Unit>
@@ -109,9 +106,6 @@
 			<Option target="csi1430_The_Byte_Brigade_"/>
 		</Unit>
 		<Unit filename="C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Entites/Src/WorldGeneration.cpp">
-			<Option target="csi1430_The_Byte_Brigade_"/>
-		</Unit>
-		<Unit filename="C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Entites/Src/cropFunc.cpp">
 			<Option target="csi1430_The_Byte_Brigade_"/>
 		</Unit>
 		<Unit filename="C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/c++_project/Game.cpp">

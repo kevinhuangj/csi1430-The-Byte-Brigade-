@@ -23,8 +23,6 @@ add_executable(csi1430_The_Byte_Brigade_
         c++_project/Entites/Src/HumanFunc.cpp
         c++_project/Entites/Src/WorldGeneration.cpp
         c++_project/Entites/Headers/WorldGeneration.h
-        c++_project/Entites/Headers/cropFunc.h
-        c++_project/Entites/Src/cropFunc.cpp
         c++_project/Entites/Src/TigerFunc.cpp
         c++_project/Entites/Headers/TigerFunc.h
         c++_project/Entites/Headers/MamothFunc.h
