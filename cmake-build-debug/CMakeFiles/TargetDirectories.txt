@@ -1,0 +1,3 @@
+C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/cmake-build-debug/CMakeFiles/csi1430_The_Byte_Brigade_.dir
+C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/merri/Documents/GitHub/csi1430-The-Byte-Brigade-/cmake-build-debug/CMakeFiles/rebuild_cache.dir

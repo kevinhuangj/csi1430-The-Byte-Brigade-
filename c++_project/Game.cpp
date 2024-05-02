@@ -115,7 +115,7 @@ void Game::titleScreen() {
 
 
 
-        Mix_Music * music1 = Mix_LoadMUS("audio/titleMusic.wav");
+        Mix_Music * music1 = Mix_LoadMUS("audio/4831631463022592.wav");
         Mix_PlayMusic(music1,-1);
 
         for(int r = 0; r < SIZE; r++)
