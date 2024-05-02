@@ -58,11 +58,13 @@ void Game::handleKeyPress()
         switch (key)
         {
         case 'r':
-            if(generateRan == false)
-            {
-                generateLoop();
-                generateRan = true;
+            if(paused == true){
+                paused = false;
             }
+            else{
+                paused = true;
+            }
+            cout << 'r' << endl;
             break;
         case 'q':
 
@@ -228,19 +230,24 @@ void Game::run()
                 generateLoop();
                 generateRan = true;
             }else{
-                int choser = rand()%3+1;
-                if(choser >= 2) {
-                    findPeeps(pSquare);
-                    moveToPeep(pSquare);
-                }
-                if(choser == 1) {
-                    findCrops(pSquare);
-                    moveToCrop(pSquare);
-                }
-                findGrass(pSquare);
-                moveToGrass(pSquare);
-                handleMouseClick();
                 handleKeyPress();
+                handleMouseClick();
+                if(!paused) {
+                    int choser = rand() % 3 + 1;
+                    if (choser >= 2) {
+                        findPeeps(pSquare);
+                        moveToPeep(pSquare);
+                    }
+                    if (choser == 1) {
+                        findCrops(pSquare);
+                        moveToCrop(pSquare);
+                    }
+                    findGrass(pSquare);
+                    moveToGrass(pSquare);
+
+
+
+                }
                 drawAndUpdate();
             }
         }

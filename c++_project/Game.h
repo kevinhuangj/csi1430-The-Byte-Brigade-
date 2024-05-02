@@ -25,7 +25,7 @@ private:
     mutex data_mutex;
     bool start = false;
     bool title = false;
-
+    bool paused = true;
 
 public:
     Game();
