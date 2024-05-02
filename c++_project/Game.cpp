@@ -70,11 +70,8 @@ void Game::handleKeyPress()
             else{
                 paused = true;
             }
-            cout << 'r' << endl;
+//            cout << 'r' << endl;
             break;
-        case 'q':
-
-            cout << "Q..." << endl;
 
         }
     }
@@ -220,6 +217,17 @@ void Game::titleScreen() {
 
 }
 
+}
+
+void Game::setAllDirt()
+{
+    for(int r = 0; r < dim; r++)
+    {
+        for(int c = 0; c < dim; c++)
+        {
+            pSquare[r][c].setType(DIRT);
+        }
+    }
 }
 
 //function for the general running of the game

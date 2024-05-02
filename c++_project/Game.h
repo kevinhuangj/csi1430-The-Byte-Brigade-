@@ -20,10 +20,11 @@ class Game
 private:
     SDL_Plotter g;
     Square pSquare[dim][dim];
-    bool start = false;
+    bool start = true;
     bool title = false;
     bool paused = true;
     int count = 0;
+    bool wasCrop[dim][dim] = {false};
 
 public:
     Game();
@@ -46,6 +47,7 @@ public:
 
     void run();
 
+    void setAllDirt();
 };
 
 
