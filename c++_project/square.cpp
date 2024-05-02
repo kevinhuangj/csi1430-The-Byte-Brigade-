@@ -80,7 +80,7 @@ objType Square::getType()
 //setter of type
 objType Square::setType(objType t)
 {
-    this->type = t;
+    type = t;
     switch (type)
     {
         case DIRT:
@@ -94,21 +94,14 @@ objType Square::setType(objType t)
             break;
         case HUMAN: {
             _color = color(185, 180, 180); // bright tan
-            Mix_Chunk * soundHuman = Mix_LoadWAV("audio/human_voice_male_grunt_grumble_caveman_001.wav");
-            Mix_PlayChannel(-1, soundHuman, 0);
             break;
         }
         case MAMMOTH: {
             _color = color(183, 114, 196); // pinkish
-            Mix_Chunk *soundMamoth = Mix_LoadWAV(
-                    "audio/elephant-trumpets-growls-6047.wav");
-            Mix_PlayChannel(-1, soundMamoth, 0);
             break;
         }
         case TIGER: {
             _color = color(255, 165, 0); // orange
-            Mix_Chunk * soundTiger = Mix_LoadWAV("audio/mixkit-angry-wild-cat-roar-89.wav");
-            Mix_PlayChannel(-1, soundTiger, 0);
             break;
         }
         case WATER:
@@ -157,15 +150,4 @@ void Square::click()
 
     }
 }
-
-int Square::getNumNeighbors() const
-{
-    return numNeighbors;
-}
-
-void Square::setNumNeighbors(int num)
-{
-    numNeighbors = num;
-}
-
 

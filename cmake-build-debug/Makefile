@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2024.1\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Users\Lucas_Ulibarri2\AppData\Local\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2024.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Users\Lucas_Ulibarri2\AppData\Local\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-
+CMAKE_SOURCE_DIR = C:\Users\Lucas_Ulibarri2\Desktop\Projects\csi1430-The-Byte-Brigade-
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Lucas_Ulibarri2\Desktop\Projects\csi1430-The-Byte-Brigade-\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cma
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2024.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Users\Lucas_Ulibarri2\AppData\Local\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2024.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Users\Lucas_Ulibarri2\AppData\Local\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Lucas_Ulibarri2\Desktop\Projects\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles C:\Users\Lucas_Ulibarri2\Desktop\Projects\csi1430-The-Byte-Brigade-\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Lucas_Ulibarri2\Desktop\Projects\csi1430-The-Byte-Brigade-\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -223,30 +223,6 @@ c++_project/Entites/Src/WorldGeneration.s: c++_project/Entites/Src/WorldGenerati
 c++_project/Entites/Src/WorldGeneration.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\csi1430_The_Byte_Brigade_.dir\build.make CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/WorldGeneration.cpp.s
 .PHONY : c++_project/Entites/Src/WorldGeneration.cpp.s
-
-c++_project/Entites/Src/cropFunc.obj: c++_project/Entites/Src/cropFunc.cpp.obj
-.PHONY : c++_project/Entites/Src/cropFunc.obj
-
-# target to build an object file
-c++_project/Entites/Src/cropFunc.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\csi1430_The_Byte_Brigade_.dir\build.make CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.obj
-.PHONY : c++_project/Entites/Src/cropFunc.cpp.obj
-
-c++_project/Entites/Src/cropFunc.i: c++_project/Entites/Src/cropFunc.cpp.i
-.PHONY : c++_project/Entites/Src/cropFunc.i
-
-# target to preprocess a source file
-c++_project/Entites/Src/cropFunc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\csi1430_The_Byte_Brigade_.dir\build.make CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.i
-.PHONY : c++_project/Entites/Src/cropFunc.cpp.i
-
-c++_project/Entites/Src/cropFunc.s: c++_project/Entites/Src/cropFunc.cpp.s
-.PHONY : c++_project/Entites/Src/cropFunc.s
-
-# target to generate assembly for a file
-c++_project/Entites/Src/cropFunc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\csi1430_The_Byte_Brigade_.dir\build.make CMakeFiles/csi1430_The_Byte_Brigade_.dir/c++_project/Entites/Src/cropFunc.cpp.s
-.PHONY : c++_project/Entites/Src/cropFunc.cpp.s
 
 c++_project/Game.obj: c++_project/Game.cpp.obj
 .PHONY : c++_project/Game.obj
@@ -389,9 +365,6 @@ help:
 	@echo ... c++_project/Entites/Src/WorldGeneration.obj
 	@echo ... c++_project/Entites/Src/WorldGeneration.i
 	@echo ... c++_project/Entites/Src/WorldGeneration.s
-	@echo ... c++_project/Entites/Src/cropFunc.obj
-	@echo ... c++_project/Entites/Src/cropFunc.i
-	@echo ... c++_project/Entites/Src/cropFunc.s
 	@echo ... c++_project/Game.obj
 	@echo ... c++_project/Game.i
 	@echo ... c++_project/Game.s
