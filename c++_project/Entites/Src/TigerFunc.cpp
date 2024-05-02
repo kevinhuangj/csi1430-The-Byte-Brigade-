@@ -17,7 +17,7 @@ void findPeeps(Square (&pSquare)[dim][dim])
     vector<int> HmnsRowLocations;
     vector<int> HmnsColLocations;
 
-    // Find the human and all crops
+    // Find the Tiger and all crops
     for(int r = 0; r < dim; r++)
     {
         for(int c = 0; c < dim; c++)
@@ -48,7 +48,7 @@ void findPeeps(Square (&pSquare)[dim][dim])
         }
     }
 
-    // If no crops were found within the radius, set the human's square to GRASS
+    // If no crops were found within the radius, set the Tiger's square to GRASS
     if(minDistance == 10000)
     {
         pSquare[tigerRow][tigerCol].setType(GRASS);
@@ -60,7 +60,7 @@ void moveToPeep(Square (&pSquare)[dim][dim])
     int currentHumanRow = -1;
     int currenttigerCol = -1;
 
-    // First, find the HUMAN square and store its position
+    // First, find the Tiger square and store its position
     for(int r = 0; r < dim; r++)
     {
         for(int c = 0; c < dim; c++)
@@ -78,7 +78,7 @@ void moveToPeep(Square (&pSquare)[dim][dim])
         }
     }
 
-    // Then, check the surrounding squares and move the human to a non-water square closer to the crop
+    // Then, check the surrounding squares and move the Tiger to a non-water square closer to the crop
     if(currentHumanRow != -1)
     {
         pSquare[currentHumanRow][currenttigerCol].setType(GRASS);
@@ -122,7 +122,7 @@ void moveToPeep(Square (&pSquare)[dim][dim])
                 }
             }
 
-            // If all squares in the vicinity are water, the human stays in its current position
+            // If all squares in the vicinity are water, the Tiger stays in its current position
             pSquare[currentHumanRow][currenttigerCol].setType(TIGER);
         }
     }

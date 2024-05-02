@@ -10,7 +10,8 @@
 #include "config.h"
 #include <mutex>
 #include "Entites/Headers/HumanFunc.h"
-#include "C:\Users\merri\Documents\GitHub\csi1430-The-Byte-Brigade-\c++_project\Entites\Headers\TigerFunc.h"
+#include "Entites/Headers/TigerFunc.h"
+#include "Entites/Headers/MamothFunc.h"
 #include "Entites/Headers/WorldGeneration.h"
 #include "Entites/Headers/cropFunc.h"
 #include <random>

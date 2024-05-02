@@ -19,7 +19,7 @@ void Game::generateLoop()
         drawAndUpdate();    // Update the screen after each generation
         generateCropAroundWater(pSquare);
         drawAndUpdate();    // Update the screen after generating crops
-        SDL_Delay(100);  // Delay for a while (e.g., 1 second) to see the changes
+        SDL_Delay(60);  // Delay for a while (e.g., 1 second) to see the changes
         if(g.kbhit())       // Break the loop if any key is pressed
         {
             g.getKey();     // Clear the key press event
@@ -229,7 +229,7 @@ void Game::run()
                 generateRan = true;
             }else{
                 int choser = rand()%3+1;
-                if(choser == 3) {
+                if(choser >= 2) {
                     findPeeps(pSquare);
                     moveToPeep(pSquare);
                 }
@@ -237,6 +237,8 @@ void Game::run()
                     findCrops(pSquare);
                     moveToCrop(pSquare);
                 }
+                findGrass(pSquare);
+                moveToGrass(pSquare);
                 handleMouseClick();
                 handleKeyPress();
                 drawAndUpdate();
