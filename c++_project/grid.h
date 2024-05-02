@@ -2,8 +2,8 @@
  * grid.h
  *
  *  Created on: Apr 3, 2024
- *      Author: Kevin Huang
- *      Editted by Eric_Escobar, Junshen_Huang, Lucas_Ulibarri, Merrick_Beinhower, Zhicheng_Zhao
+ *      Author: Kevin Huang, Eric_Escobar, Junshen_Huang, 
+ *              Lucas_Ulibarri, Merrick_Beinhower, Zhicheng_Zhao
  */
 
 #ifndef GRID_H_

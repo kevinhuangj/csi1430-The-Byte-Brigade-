@@ -1,7 +1,0 @@
-open powershell on windows
-put the following command in it.
-winget install --id Git.Git -e --source winget
-git clone https://github.com/kevinhuangj/csi1430-The-Byte-Brigade-.git
-cd .\csi1430-The-Byte-Brigade-.git
-then you can create your own code branch not interrupt other code.
-

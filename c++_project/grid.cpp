@@ -2,8 +2,8 @@
  * grid.cpp
  *
  *  Created on: Apr 3, 2024
- *      Author: Kevin Huang
- *      editted by Eric Escobar,Junshen Huang, Lucas Ulibarri, Merrick_Beinhower, Zhicheng_Zhao
+ *      Author: Kevin Huang, Eric Escobar, Junshen Huang, 
+ *              Lucas Ulibarri, Merrick Beinhower, Zhicheng Zhao
  */
 
 #include "grid.h"

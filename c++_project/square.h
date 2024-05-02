@@ -2,8 +2,8 @@
  * square.h
  *
  *  Created on: Apr 3, 2024
- *      Author: Kevin Huang 
- *      Editted by Eric Escobar, Junshen Huang, Lucas Ulibarri, Merrick Beinhower, Zhicheng Zhao
+ *      Author: Kevin Huang, Eric Escobar, Junshen Huang, 
+ *              Lucas Ulibarri, Merrick Beinhower, Zhicheng Zhao
  */
 
 

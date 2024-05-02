@@ -1,6 +1,0 @@
-brew install git 
-then you could use git clone to get the stuff works
-git clone https://github.com/kevinhuangj/csi1430-The-Byte-Brigade-.git
-cd csi1430-The-Byte-Brigade-
-then you can create your own code branch not interrupt other code.
-
