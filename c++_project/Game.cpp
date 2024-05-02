@@ -228,8 +228,15 @@ void Game::run()
                 generateLoop();
                 generateRan = true;
             }else{
-                findCrops(pSquare);
-                moveToCrop(pSquare);
+                int choser = rand()%3+1;
+                if(choser == 3) {
+                    findPeeps(pSquare);
+                    moveToPeep(pSquare);
+                }
+                if(choser == 1) {
+                    findCrops(pSquare);
+                    moveToCrop(pSquare);
+                }
                 handleMouseClick();
                 handleKeyPress();
                 drawAndUpdate();

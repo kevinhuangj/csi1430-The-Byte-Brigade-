@@ -25,6 +25,8 @@ add_executable(csi1430_The_Byte_Brigade_
         c++_project/Entites/Headers/WorldGeneration.h
         c++_project/Entites/Headers/cropFunc.h
         c++_project/Entites/Src/cropFunc.cpp
+        c++_project/Entites/Src/TigerFunc.cpp
+        c++_project/Entites/Headers/TigerFunc.h
 )
 
 target_link_libraries(csi1430_The_Byte_Brigade_ SDL2main SDL2 SDL2_mixer)
