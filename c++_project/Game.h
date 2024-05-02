@@ -8,7 +8,6 @@
 #include "square.h"
 #include "PLOTTER/SDL_Plotter.h"
 #include "config.h"
-#include <mutex>
 #include "Entites/Headers/HumanFunc.h"
 #include "Entites/Headers/TigerFunc.h"
 #include "Entites/Headers/MamothFunc.h"
@@ -22,7 +21,6 @@ class Game
 private:
     SDL_Plotter g;
     Square pSquare[dim][dim];
-    mutex data_mutex;
     bool start = false;
     bool title = false;
     bool paused = true;
