@@ -6,9 +6,13 @@
 
 #include <vector>
 #include <cmath>
+#include <random>
+
 
 int foundCrpRow;
 int foundCrpCol;
+int HMNrandCol;
+int HMNrandRow;
 
 void findCrops(Square (&pSquare)[dim][dim])
 {
@@ -17,6 +21,7 @@ void findCrops(Square (&pSquare)[dim][dim])
     vector<int> cropsColLocations;
 
     // Find the human and all crops
+
     for(int r = 0; r < dim; r++)
     {
         for(int c = 0; c < dim; c++)
@@ -59,21 +64,57 @@ void moveToCrop(Square (&pSquare)[dim][dim])
     int currentHumanRow = -1;
     int currentHumanCol = -1;
 
-    // First, find the HUMAN square and store its position
-    for(int r = 0; r < dim; r++)
-    {
-        for(int c = 0; c < dim; c++)
-        {
-            if(pSquare[r][c].getType() == HUMAN)
-            {
-                currentHumanRow = r;
-                currentHumanCol = c;
+    // First, find the HUMAN square and store its position and its random
+    int HMNrandRow = rand()%2;
+    int HMNrandCol = rand()%2;
+
+    if(HMNrandRow == 0) {
+        for (int r = 0; r < dim; r++) {
+            if(HMNrandCol == 0) {
+                for (int c = 0; c < dim; c++) {
+                    if (pSquare[r][c].getType() == HUMAN) {
+                        currentHumanRow = r;
+                        currentHumanCol = c;
+                        break;
+                    }
+                }
+            }else{
+                for (int c = dim; c >= 0; c--) {
+                    if (pSquare[r][c].getType() == HUMAN) {
+                        currentHumanRow = r;
+                        currentHumanCol = c;
+                        break;
+                    }
+                }
+
+            }
+            if (currentHumanRow != -1) {
                 break;
             }
         }
-        if(currentHumanRow != -1)
-        {
-            break;
+    }else{
+        for (int r = dim; r >= 0; r--) {
+            if(HMNrandCol == 0) {
+                for (int c = 0; c < dim; c++) {
+                    if (pSquare[r][c].getType() == HUMAN) {
+                        currentHumanRow = r;
+                        currentHumanCol = c;
+                        break;
+                    }
+                }
+            }else{
+                for (int c = dim; c >= 0; c--) {
+                    if (pSquare[r][c].getType() == HUMAN) {
+                        currentHumanRow = r;
+                        currentHumanCol = c;
+                        break;
+                    }
+                }
+
+            }
+            if (currentHumanRow != -1) {
+                break;
+            }
         }
     }
 
@@ -114,7 +155,7 @@ void moveToCrop(Square (&pSquare)[dim][dim])
                 {
                     if(pSquare[r][c].getType() != WATER && pSquare[r][c].getType() != HUMAN && abs(foundCrpRow - r) + abs(foundCrpCol - c) < abs(foundCrpRow - currentHumanRow) + abs(foundCrpCol - currentHumanCol))
                     {
-                        SDL_Delay(300);
+                        SDL_Delay(150);
                         pSquare[r][c].setType(HUMAN);
                         return;
                     }

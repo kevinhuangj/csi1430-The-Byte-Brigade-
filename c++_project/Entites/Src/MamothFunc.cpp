@@ -1,14 +1,18 @@
 //
-// Created by merri on 5/1/2024.
+// Created by lulib on 4/23/2024.
 //
 
 #include "Entites/Headers/MamothFunc.h"
 
 #include <vector>
 #include <cmath>
+#include <random>
 
-int foundGrsRow;
-int foundGrsCol;
+
+int foundGraRow;
+int foundGraCol;
+int MMTrandCol;
+int MMTrandRow;
 
 void findGrass(Square (&pSquare)[dim][dim])
 {
@@ -16,7 +20,8 @@ void findGrass(Square (&pSquare)[dim][dim])
     vector<int> grassRowLocations;
     vector<int> grassColLocations;
 
-    // Find the Mammoth and all crops
+    // Find the MAMMOTH and all Grass
+
     for(int r = 0; r < dim; r++)
     {
         for(int c = 0; c < dim; c++)
@@ -42,15 +47,15 @@ void findGrass(Square (&pSquare)[dim][dim])
         if(distance < minDistance && distance <= 8)
         {
             minDistance = distance;
-            foundGrsRow = grassRowLocations[i];
-            foundGrsCol = grassColLocations[i];
+            foundGraRow = grassRowLocations[i];
+            foundGraCol = grassColLocations[i];
         }
     }
 
-    // If no crops were found within the radius, set the Mammoth's square to GRASS
+    // If no Grass were found within the radius, set the MAMMOTH's square to GRASS
     if(minDistance == 10000)
     {
-        pSquare[mammothRow][mammothCol].setType(DIRT);
+        pSquare[mammothRow][mammothCol].setType(GRASS);
     }
 }
 
@@ -59,48 +64,84 @@ void moveToGrass(Square (&pSquare)[dim][dim])
     int currentmammothRow = -1;
     int currentmammothCol = -1;
 
-    // First, find the Mammoth square and store its position
-    for(int r = 0; r < dim; r++)
-    {
-        for(int c = 0; c < dim; c++)
-        {
-            if(pSquare[r][c].getType() == MAMMOTH)
-            {
-                currentmammothRow = r;
-                currentmammothCol = c;
+    // First, find the MAMMOTH square and store its position and its random
+    int MMTrandRow = rand()%2;
+    int MMTrandCol = rand()%2;
+
+    if(MMTrandRow == 0) {
+        for (int r = 0; r < dim; r++) {
+            if(MMTrandCol == 0) {
+                for (int c = 0; c < dim; c++) {
+                    if (pSquare[r][c].getType() == MAMMOTH) {
+                        currentmammothRow = r;
+                        currentmammothCol = c;
+                        break;
+                    }
+                }
+            }else{
+                for (int c = dim; c >= 0; c--) {
+                    if (pSquare[r][c].getType() == MAMMOTH) {
+                        currentmammothRow = r;
+                        currentmammothCol = c;
+                        break;
+                    }
+                }
+
+            }
+            if (currentmammothRow != -1) {
                 break;
             }
         }
-        if(currentmammothRow != -1)
-        {
-            break;
+    }else{
+        for (int r = dim; r >= 0; r--) {
+            if(MMTrandCol == 0) {
+                for (int c = 0; c < dim; c++) {
+                    if (pSquare[r][c].getType() == MAMMOTH) {
+                        currentmammothRow = r;
+                        currentmammothCol = c;
+                        break;
+                    }
+                }
+            }else{
+                for (int c = dim; c >= 0; c--) {
+                    if (pSquare[r][c].getType() == MAMMOTH) {
+                        currentmammothRow = r;
+                        currentmammothCol = c;
+                        break;
+                    }
+                }
+
+            }
+            if (currentmammothRow != -1) {
+                break;
+            }
         }
     }
 
-    // Then, check the surrounding squares and move the Mammoth to a non-water square closer to the crop
+    // Then, check the surrounding squares and move the MAMMOTH to a non-water square closer to the crop
     if(currentmammothRow != -1)
     {
         pSquare[currentmammothRow][currentmammothCol].setType(DIRT);
         if(currentmammothRow > 0 && pSquare[currentmammothRow - 1][currentmammothCol].getType() != (WATER) && pSquare[currentmammothRow - 1][currentmammothCol].getType() != MAMMOTH
-           && abs(foundGrsRow - (currentmammothRow - 1)) < abs(foundGrsRow - currentmammothRow))
+           && abs(foundGraRow - (currentmammothRow - 1)) < abs(foundGraRow - currentmammothRow))
         {
             SDL_Delay(300);
             pSquare[currentmammothRow - 1][currentmammothCol].setType(MAMMOTH);
         }
         else if(currentmammothRow < dim - 1 && pSquare[currentmammothRow + 1][currentmammothCol].getType() != WATER && currentmammothRow < dim - 1 && pSquare[currentmammothRow + 1][currentmammothCol].getType() != MAMMOTH
-                && abs(foundGrsRow - (currentmammothRow + 1)) < abs(foundGrsRow - currentmammothRow))
+                && abs(foundGraRow - (currentmammothRow + 1)) < abs(foundGraRow - currentmammothRow))
         {
             SDL_Delay(300);
             pSquare[currentmammothRow + 1][currentmammothCol].setType(MAMMOTH);
         }
         else if(currentmammothCol > 0 && pSquare[currentmammothRow][currentmammothCol - 1].getType() != WATER && currentmammothCol > 0 && pSquare[currentmammothRow][currentmammothCol - 1].getType() != MAMMOTH
-                && abs(foundGrsCol - (currentmammothCol - 1)) < abs(foundGrsCol - currentmammothCol))
+                && abs(foundGraCol - (currentmammothCol - 1)) < abs(foundGraCol - currentmammothCol))
         {
             SDL_Delay(300);
             pSquare[currentmammothRow][currentmammothCol - 1].setType(MAMMOTH);
         }
         else if(currentmammothCol < dim - 1 && pSquare[currentmammothRow][currentmammothCol + 1].getType() != WATER && currentmammothCol < dim - 1 && pSquare[currentmammothRow][currentmammothCol + 1].getType() != MAMMOTH
-                && abs(foundGrsCol - (currentmammothCol + 1)) < abs(foundGrsCol - currentmammothCol))
+                && abs(foundGraCol - (currentmammothCol + 1)) < abs(foundGraCol - currentmammothCol))
         {
             SDL_Delay(300);
             pSquare[currentmammothRow][currentmammothCol + 1].setType(MAMMOTH);
@@ -112,16 +153,16 @@ void moveToGrass(Square (&pSquare)[dim][dim])
             {
                 for(int c = max(0, currentmammothCol - 2); c <= min(dim - 1, currentmammothCol + 2); c++)
                 {
-                    if(pSquare[r][c].getType() != WATER && pSquare[r][c].getType() != MAMMOTH && abs(foundGrsRow - r) + abs(foundGrsCol - c) < abs(foundGrsRow - currentmammothRow) + abs(foundGrsCol - currentmammothCol))
+                    if(pSquare[r][c].getType() != WATER && pSquare[r][c].getType() != MAMMOTH && abs(foundGraRow - r) + abs(foundGraCol - c) < abs(foundGraRow - currentmammothRow) + abs(foundGraCol - currentmammothCol))
                     {
-                        SDL_Delay(300);
+                        SDL_Delay(150);
                         pSquare[r][c].setType(MAMMOTH);
                         return;
                     }
                 }
             }
 
-            // If all squares in the vicinity are water, the Mammoth stays in its current position
+            // If all squares in the vicinity are water, the MAMMOTH stays in its current position
             pSquare[currentmammothRow][currentmammothCol].setType(MAMMOTH);
         }
     }
